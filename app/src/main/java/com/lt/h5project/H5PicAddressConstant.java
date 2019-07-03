@@ -47,5 +47,6 @@ public class H5PicAddressConstant {
         PicList.add(new AddressBean(28, "本地头条", "本地头条", "http://t.channel.45xie.com/api/api?action=showpage&page=picturelist&id=10004&appid=B932496512C544D1D790E8572D5FCCE6&guest=s"));
         PicList.add(new AddressBean(29, "天天趣闻", "天天趣闻", "http://t.channel.45xie.com/api/api?action=showpage&page=picturelist&id=10004&appid=1AFEA97FB6FC02B51DB4DC690560F50E&guest=s"));
 
+
     }
 }
