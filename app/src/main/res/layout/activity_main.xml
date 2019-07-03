@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/tv_read"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:textColor="@color/colorAccent"
+        android:layout_centerHorizontal="true"
+        android:textSize="18sp"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:text="H5小说"/>
+
+
+    <TextView
+        android:id="@+id/tv_pic"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_below="@+id/tv_read"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:text="美图"/>
+
+    <TextView
+        android:id="@+id/tv_standby_application"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_below="@+id/tv_pic"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:text="备用"/>
+
+</RelativeLayout>
