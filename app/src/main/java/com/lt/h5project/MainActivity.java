@@ -26,6 +26,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.tv_agg).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.this.startActivity(new Intent(MainActivity.this, AggregationH5Activity.class));
+            }
+        });
+
         findViewById(R.id.tv_standby_application).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

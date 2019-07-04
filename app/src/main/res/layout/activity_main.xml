@@ -31,13 +31,25 @@
         android:text="美图"/>
 
     <TextView
-        android:id="@+id/tv_standby_application"
+        android:id="@+id/tv_agg"
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:textColor="@color/colorAccent"
         android:textSize="18sp"
         android:gravity="center"
         android:layout_below="@+id/tv_pic"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:text="聚合"/>
+
+    <TextView
+        android:id="@+id/tv_standby_application"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_below="@+id/tv_agg"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:text="备用"/>

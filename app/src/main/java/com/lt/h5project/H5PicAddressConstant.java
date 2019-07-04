@@ -42,10 +42,10 @@ public class H5PicAddressConstant {
         PicList.add(new AddressBean(23, "蚂蚁头条07", "蚂蚁头条07", "http://t.channel.45xie.com/api/api?action=showpage&page=picturelist&appid=8B0DFA0A60FF3F3901B2194C2B057706&guest=s"));
         PicList.add(new AddressBean(24, "蚂蚁头条08", "蚂蚁头条08", "http://t.channel.45xie.com/api/api?action=showpage&page=picturelist&appid=BDD3C9D2E70823A167EC505221304CF5&guest=s"));
         PicList.add(new AddressBean(25, "美图05", "多点02", "http://t.channel.45xie.com/api/api?action=showpage&page=picturelist&appid=1C644DD589C3C80BE9F2A115CE254B09&guest=s"));
-        PicList.add(new AddressBean(26, "百姓头条02", "百姓头条02", "http://t.channel.45xie.com/api/api?action=showpage&page=picturelist&appid=BFC3E5A0B144AC29B1A642F64DF0ABC2&guest=s"));
-        PicList.add(new AddressBean(27, "趣看点06", "趣看点06", "http://t.channel.45xie.com/api/api?action=showpage&page=picturelist&id=10004&appid=A3E5D4F6D4AB0BD3230E57C18C17B5B6&guest=s"));
-        PicList.add(new AddressBean(28, "本地头条", "本地头条", "http://t.channel.45xie.com/api/api?action=showpage&page=picturelist&id=10004&appid=B932496512C544D1D790E8572D5FCCE6&guest=s"));
-        PicList.add(new AddressBean(29, "天天趣闻", "天天趣闻", "http://t.channel.45xie.com/api/api?action=showpage&page=picturelist&id=10004&appid=1AFEA97FB6FC02B51DB4DC690560F50E&guest=s"));
+//        PicList.add(new AddressBean(26, "百姓头条02", "百姓头条02", "http://t.channel.45xie.com/api/api?action=showpage&page=picturelist&appid=BFC3E5A0B144AC29B1A642F64DF0ABC2&guest=s"));
+//        PicList.add(new AddressBean(27, "趣看点06", "趣看点06", "http://t.channel.45xie.com/api/api?action=showpage&page=picturelist&id=10004&appid=A3E5D4F6D4AB0BD3230E57C18C17B5B6&guest=s"));
+        PicList.add(new AddressBean(26, "本地头条", "本地头条", "http://t.channel.45xie.com/api/api?action=showpage&page=picturelist&id=10004&appid=B932496512C544D1D790E8572D5FCCE6&guest=s"));
+        PicList.add(new AddressBean(27, "天天趣闻", "天天趣闻", "http://t.channel.45xie.com/api/api?action=showpage&page=picturelist&id=10004&appid=1AFEA97FB6FC02B51DB4DC690560F50E&guest=s"));
 
 
     }

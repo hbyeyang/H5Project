@@ -56,9 +56,8 @@ public class H5ReadAddressConstant {
         ReadList.add(new AddressBean(36, "ltxs46", "蚂蚁头条08", "http://ltxs46.mchannel.pipeline.letupower.cn/"));
         ReadList.add(new AddressBean(37, "ltxs47", "蚂蚁头条09", "http://ltxs47.mchannel.pipeline.letupower.cn/"));
         ReadList.add(new AddressBean(38, "ltxs48", "多点03", "http://ltxs48.mchannel.pipeline.letupower.cn/"));
-        ReadList.add(new AddressBean(39, "ltxs21", "多点", "http://ltxs21.mchannel.pipeline.letupower.cn/"));
-        ReadList.add(new AddressBean(40, "ltxs31", "多点02", "http://ltxs31.mchannel.pipeline.letupower.cn/"));
-        ReadList.add(new AddressBean(41, "ltxs34", "悠助手04", "http://ltxs34.mchannel.pipeline.letupower.cn/"));
+        ReadList.add(new AddressBean(39, "ltxs31", "多点02", "http://ltxs31.mchannel.pipeline.letupower.cn/"));
+        ReadList.add(new AddressBean(40, "ltxs34", "悠助手04", "http://ltxs34.mchannel.pipeline.letupower.cn/"));
 
     }
 }
