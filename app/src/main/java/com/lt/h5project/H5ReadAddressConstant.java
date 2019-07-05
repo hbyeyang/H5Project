@@ -18,6 +18,9 @@ public class H5ReadAddressConstant {
     public List<AddressBean> ReadList = new ArrayList<>();
 
     public H5ReadAddressConstant() {
+        if (ReadList != null && ReadList.size() > 0) {
+            return;
+        }
         ReadList.add(new AddressBean(1, "huitoutiao", "惠头条", "http://huitoutiao.pipeline.letupower.cn/"));
         ReadList.add(new AddressBean(2, "ltxs1", "湛乘小说", "http://ltxs1.mchannel.pipeline.letupower.cn/"));
         ReadList.add(new AddressBean(3, "ltxs2", "中青看点2/章鱼输入法/趣步行03", "http://ltxs2.mchannel.pipeline.letupower.cn/"));

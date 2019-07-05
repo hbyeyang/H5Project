@@ -17,6 +17,9 @@ public class H5PicAddressConstant {
     public static List<AddressBean> PicList = new ArrayList<>();
 
     public H5PicAddressConstant() {
+        if (PicList != null && PicList.size() > 0) {
+            return;
+        }
         PicList.add(new AddressBean(1, "蚂蚁1-美图", "蚂蚁头条", "http://t.channel.45xie.com/api/api?action=showpage&page=picturelist&id=10004&appid=DC441D3E571E42D4CA55EAF9058C04C2&guest=s"));
         PicList.add(new AddressBean(2, "乐输入-美图", "乐输入", "http://t.channel.45xie.com/api/api?action=showpage&page=picturelist&_pos=home&appid=FE8B7C7E899F9B6FF6244B475EF21874&guest=s"));
         PicList.add(new AddressBean(3, "牛牛头条-美图", "牛牛头条/趣看点/蚂蚁头条2", "http://t.channel.45xie.com/api/api?action=showpage&page=picturelist&id=10004&appid=54FB38AAFED71B466106A231D833120C&guest=s"));

@@ -17,10 +17,11 @@ public class H5AggregationAddressConstant {
     public static List<AddressBean> AggregationList = new ArrayList<>();
 
     public H5AggregationAddressConstant() {
+        if (AggregationList != null && AggregationList.size() > 0) {
+            return;
+        }
         AggregationList.add(new AddressBean(1, "时间链", "时间链", "http://t.channel.45xie.com/api/api?action=showpage&page=index&appid=D9372F3FA907D1199BF5440F95982514&_pos=home"));
         AggregationList.add(new AddressBean(2, "爱尚天气", "爱尚天气", "http://t.channel.45xie.com/api/api?action=showpage&page=index&appid=A0E65217F194E9FEBFBD0FECAC1BB6D9&_pos=home"));
-
-
 
     }
 }
