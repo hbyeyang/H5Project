@@ -26,6 +26,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.tv_video).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.this.startActivity(new Intent(MainActivity.this, H5VideoActivity.class));
+            }
+        });
+
         findViewById(R.id.tv_agg).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

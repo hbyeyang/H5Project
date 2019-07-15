@@ -26,6 +26,7 @@
         
         <activity android:name=".H5ReadActivity"/>
         <activity android:name=".H5PicActivity"/>
+        <activity android:name=".H5VideoActivity"/>
         <activity android:name=".AggregationH5Activity"/>
         <activity android:name=".DetailsActivity"/>
     </application>

@@ -10,48 +10,60 @@
         android:id="@+id/tv_read"
         android:layout_width="100dp"
         android:layout_height="50dp"
-        android:textColor="@color/colorAccent"
         android:layout_centerHorizontal="true"
-        android:textSize="18sp"
         android:layout_marginTop="50dp"
         android:gravity="center"
-        android:text="H5小说"/>
+        android:text="H5小说"
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp"/>
 
 
     <TextView
         android:id="@+id/tv_pic"
         android:layout_width="100dp"
         android:layout_height="50dp"
-        android:textColor="@color/colorAccent"
-        android:textSize="18sp"
-        android:gravity="center"
         android:layout_below="@+id/tv_read"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:text="美图"/>
+        android:gravity="center"
+        android:text="美图"
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/tv_video"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/tv_pic"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:text="视频"
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp"/>
 
     <TextView
         android:id="@+id/tv_agg"
         android:layout_width="100dp"
         android:layout_height="50dp"
-        android:textColor="@color/colorAccent"
-        android:textSize="18sp"
-        android:gravity="center"
-        android:layout_below="@+id/tv_pic"
+        android:layout_below="@+id/tv_video"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:text="聚合"/>
+        android:gravity="center"
+        android:text="聚合"
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp"/>
 
     <TextView
         android:id="@+id/tv_standby_application"
         android:layout_width="100dp"
         android:layout_height="50dp"
-        android:textColor="@color/colorAccent"
-        android:textSize="18sp"
-        android:gravity="center"
         android:layout_below="@+id/tv_agg"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:text="备用"/>
+        android:gravity="center"
+        android:text="备用"
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp"/>
 
 </RelativeLayout>
