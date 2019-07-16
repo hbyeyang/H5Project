@@ -1,13 +1,18 @@
 package com.lt.h5project;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -48,6 +53,7 @@ class PicAdapter extends RecyclerView.Adapter<PicAdapter.MyViewHolder> {
         holder.tvNei.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                LogUtils.d("内跳");
                 DetailsActivity.launch(mContext, addressBean);
             }
         });
@@ -55,6 +61,7 @@ class PicAdapter extends RecyclerView.Adapter<PicAdapter.MyViewHolder> {
         holder.tvWai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                LogUtils.d("外跳");
                 Intent intent = new Intent();
                 intent.setAction("android.intent.action.VIEW");
                 Uri content_url = Uri.parse(addressBean.ChannelAddress);
@@ -62,6 +69,59 @@ class PicAdapter extends RecyclerView.Adapter<PicAdapter.MyViewHolder> {
                 mContext.startActivity(intent);
             }
         });
+
+        holder.tvCopy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LogUtils.d("复制");
+                Message message = new Message();
+                message.obj = addressBean;
+                message.what = 1;
+                mHandler.sendMessage(message);
+//                copy(mContext,addressBean.ChannelAddress);
+//                Toast.makeText(mContext,"复制成功",Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    Handler mHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case 1:
+                    try {
+                        AddressBean addressBean = (AddressBean) msg.obj;
+                        copy(mContext, addressBean.ChannelAddress);
+                        Toast.makeText(mContext, "复制成功", Toast.LENGTH_SHORT).show();
+                    }catch (Exception e){
+                        LogUtils.d(e.toString().toString());
+                    }
+                    break;
+                default:
+                    super.handleMessage(msg);
+            }
+        }
+    };
+
+    /**
+     * 复制内容到剪切板
+     *
+     * @param copyStr
+     * @return
+     */
+    private boolean copy(Context context,String copyStr) {
+        try {
+            //获取剪贴板管理器
+            ClipboardManager cm = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+            // 创建普通字符型ClipData
+            ClipData mClipData = ClipData.newPlainText("Label", copyStr);
+            // 将ClipData内容放到系统剪贴板里。
+            cm.setPrimaryClip(mClipData);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Override
@@ -77,6 +137,7 @@ class PicAdapter extends RecyclerView.Adapter<PicAdapter.MyViewHolder> {
         TextView tvChannelAddress;
         TextView tvNei;
         TextView tvWai;
+        TextView tvCopy;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -86,6 +147,7 @@ class PicAdapter extends RecyclerView.Adapter<PicAdapter.MyViewHolder> {
             tvChannelAddress = (TextView) itemView.findViewById(R.id.tv_channel_address);
             tvNei = (TextView) itemView.findViewById(R.id.tv_nei);
             tvWai = (TextView) itemView.findViewById(R.id.tv_wai);
+            tvCopy = (TextView) itemView.findViewById(R.id.tv_copy);
         }
     }
 }
