@@ -7,7 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.lt.h5project.R;
-import com.lt.h5project.adapter.VideoAdapter;
+import com.lt.h5project.adapter.RecyclerviewAdapter;
 import com.lt.h5project.constant.H5VideoAddressConstant;
 
 /**
@@ -22,7 +22,6 @@ import com.lt.h5project.constant.H5VideoAddressConstant;
  */
 public class H5VideoActivity extends AppCompatActivity {
     private RecyclerView mRyVideo;
-    private VideoAdapter mVideoAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +39,6 @@ public class H5VideoActivity extends AppCompatActivity {
 
         H5VideoAddressConstant h5VideoAddressConstant = new H5VideoAddressConstant();
         //设置adapter
-        mRyVideo.setAdapter(new VideoAdapter(this, h5VideoAddressConstant.PicList));
+        mRyVideo.setAdapter(new RecyclerviewAdapter(this, h5VideoAddressConstant.PicList));
     }
 }

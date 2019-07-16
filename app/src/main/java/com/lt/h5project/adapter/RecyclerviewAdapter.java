@@ -24,19 +24,19 @@ import java.util.List;
 /**
  * @author yeyang
  * @name H5project
- * @class name：com.lt.h5project
+ * @class name：com.lt.h5project.adapter
  * @class describe
- * @time 2019-06-18 11:05
+ * @time 2019-07-16 11:37
  * @change
  * @chang time
  * @class describe
  */
-public class AggregationAdapter extends RecyclerView.Adapter<AggregationAdapter.MyViewHolder> {
+public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapter.MyViewHolder> {
     private Context mContext;
     private List<AddressBean> mList;
     private View inflater;
 
-    public AggregationAdapter(Context context, List<AddressBean> list) {
+    public RecyclerviewAdapter(Context context, List<AddressBean> list) {
         mContext = context;
         mList = list;
     }
@@ -83,13 +83,11 @@ public class AggregationAdapter extends RecyclerView.Adapter<AggregationAdapter.
                 message.obj = addressBean;
                 message.what = 1;
                 mHandler.sendMessage(message);
-//                copy(mContext,addressBean.ChannelAddress);
-//                Toast.makeText(mContext,"复制成功",Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    Handler mHandler = new Handler() {
+    Handler mHandler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
@@ -99,7 +97,7 @@ public class AggregationAdapter extends RecyclerView.Adapter<AggregationAdapter.
                         AddressBean addressBean = (AddressBean) msg.obj;
                         copy(mContext, addressBean.ChannelAddress);
                         Toast.makeText(mContext, "复制成功", Toast.LENGTH_SHORT).show();
-                    } catch (Exception e) {
+                    }catch (Exception e){
                         LogUtils.d(e.toString().toString());
                     }
                     break;
@@ -115,7 +113,7 @@ public class AggregationAdapter extends RecyclerView.Adapter<AggregationAdapter.
      * @param copyStr
      * @return
      */
-    private boolean copy(Context context, String copyStr) {
+    private boolean copy(Context context,String copyStr) {
         try {
             //获取剪贴板管理器
             ClipboardManager cm = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);

@@ -7,8 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.lt.h5project.R;
-import com.lt.h5project.adapter.PicAdapter;
-import com.lt.h5project.adapter.ReadAdapter;
+import com.lt.h5project.adapter.RecyclerviewAdapter;
 import com.lt.h5project.constant.H5PicAddressConstant;
 
 /**
@@ -23,7 +22,6 @@ import com.lt.h5project.constant.H5PicAddressConstant;
  */
 public class H5PicActivity extends AppCompatActivity {
     private RecyclerView mRyPic;
-    private PicAdapter mPicAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +39,6 @@ public class H5PicActivity extends AppCompatActivity {
 
         H5PicAddressConstant h5PicAddressConstant = new H5PicAddressConstant();
         //设置adapter
-        mRyPic.setAdapter(new PicAdapter(this,h5PicAddressConstant.PicList));
+        mRyPic.setAdapter(new RecyclerviewAdapter(this,h5PicAddressConstant.PicList));
     }
 }

@@ -7,7 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.lt.h5project.R;
-import com.lt.h5project.adapter.AggregationAdapter;
+import com.lt.h5project.adapter.RecyclerviewAdapter;
 import com.lt.h5project.constant.H5AggregationAddressConstant;
 
 /**
@@ -22,7 +22,6 @@ import com.lt.h5project.constant.H5AggregationAddressConstant;
  */
 public class AggregationH5Activity extends AppCompatActivity {
     private RecyclerView mRyAggregation;
-    private AggregationAdapter mAggregationAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +39,6 @@ public class AggregationH5Activity extends AppCompatActivity {
 
         H5AggregationAddressConstant h5AggregationAddressConstant = new H5AggregationAddressConstant();
         //设置adapter
-        mRyAggregation.setAdapter(new AggregationAdapter(this,h5AggregationAddressConstant.AggregationList));
+        mRyAggregation.setAdapter(new RecyclerviewAdapter(this,h5AggregationAddressConstant.AggregationList));
     }
 }

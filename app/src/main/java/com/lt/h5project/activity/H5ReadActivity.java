@@ -7,7 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.lt.h5project.R;
-import com.lt.h5project.adapter.ReadAdapter;
+import com.lt.h5project.adapter.RecyclerviewAdapter;
 import com.lt.h5project.constant.H5ReadAddressConstant;
 
 /**
@@ -23,7 +23,6 @@ import com.lt.h5project.constant.H5ReadAddressConstant;
 public class H5ReadActivity extends AppCompatActivity {
 
     private RecyclerView mRyRead;
-    private ReadAdapter mReadAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +40,6 @@ public class H5ReadActivity extends AppCompatActivity {
 
         H5ReadAddressConstant h5ReadAddressConstant = new H5ReadAddressConstant();
         //设置adapter
-        mRyRead.setAdapter(new ReadAdapter(this,h5ReadAddressConstant.ReadList));
+        mRyRead.setAdapter(new RecyclerviewAdapter(this,h5ReadAddressConstant.ReadList));
     }
 }
