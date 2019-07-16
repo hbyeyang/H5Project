@@ -1,4 +1,4 @@
-package com.lt.h5project;
+package com.lt.h5project.adapter;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -14,6 +14,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.lt.h5project.R;
+import com.lt.h5project.activity.DetailsActivity;
+import com.lt.h5project.bean.AddressBean;
+import com.lt.h5project.util.LogUtils;
+
 import java.util.List;
 
 /**
@@ -26,25 +31,25 @@ import java.util.List;
  * @chang time
  * @class describe
  */
-class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.MyViewHolder> {
+public class AggregationAdapter extends RecyclerView.Adapter<AggregationAdapter.MyViewHolder> {
     private Context mContext;
     private List<AddressBean> mList;
     private View inflater;
 
-    public VideoAdapter(Context context, List<AddressBean> list) {
+    public AggregationAdapter(Context context, List<AddressBean> list) {
         mContext = context;
         mList = list;
     }
 
     @Override
-    public VideoAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         inflater = LayoutInflater.from(mContext).inflate(R.layout.item_context, parent, false);
-        VideoAdapter.MyViewHolder myViewHolder = new VideoAdapter.MyViewHolder(inflater);
+        MyViewHolder myViewHolder = new MyViewHolder(inflater);
         return myViewHolder;
     }
 
     @Override
-    public void onBindViewHolder(VideoAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, int position) {
         final AddressBean addressBean = mList.get(position);
         holder.tvNum.setText(String.valueOf(addressBean.number));
         holder.tvDomai_name.setText(addressBean.domainame);
@@ -84,7 +89,7 @@ class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.MyViewHolder> {
         });
     }
 
-    Handler mHandler = new Handler(){
+    Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
@@ -94,7 +99,7 @@ class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.MyViewHolder> {
                         AddressBean addressBean = (AddressBean) msg.obj;
                         copy(mContext, addressBean.ChannelAddress);
                         Toast.makeText(mContext, "复制成功", Toast.LENGTH_SHORT).show();
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         LogUtils.d(e.toString().toString());
                     }
                     break;
@@ -110,7 +115,7 @@ class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.MyViewHolder> {
      * @param copyStr
      * @return
      */
-    private boolean copy(Context context,String copyStr) {
+    private boolean copy(Context context, String copyStr) {
         try {
             //获取剪贴板管理器
             ClipboardManager cm = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);

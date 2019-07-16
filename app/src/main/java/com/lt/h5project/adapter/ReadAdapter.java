@@ -1,4 +1,4 @@
-package com.lt.h5project;
+package com.lt.h5project.adapter;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -14,6 +14,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.lt.h5project.R;
+import com.lt.h5project.activity.DetailsActivity;
+import com.lt.h5project.bean.AddressBean;
+import com.lt.h5project.util.LogUtils;
+
 import java.util.List;
 
 /**
@@ -26,12 +31,12 @@ import java.util.List;
  * @chang time
  * @class describe
  */
-class AggregationAdapter extends RecyclerView.Adapter<AggregationAdapter.MyViewHolder> {
+public class ReadAdapter extends RecyclerView.Adapter<ReadAdapter.MyViewHolder> {
     private Context mContext;
     private List<AddressBean> mList;
     private View inflater;
 
-    public AggregationAdapter(Context context, List<AddressBean> list) {
+    public ReadAdapter(Context context, List<AddressBean> list) {
         mContext = context;
         mList = list;
     }
@@ -84,7 +89,7 @@ class AggregationAdapter extends RecyclerView.Adapter<AggregationAdapter.MyViewH
         });
     }
 
-    Handler mHandler = new Handler() {
+    Handler mHandler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
@@ -94,7 +99,7 @@ class AggregationAdapter extends RecyclerView.Adapter<AggregationAdapter.MyViewH
                         AddressBean addressBean = (AddressBean) msg.obj;
                         copy(mContext, addressBean.ChannelAddress);
                         Toast.makeText(mContext, "复制成功", Toast.LENGTH_SHORT).show();
-                    } catch (Exception e) {
+                    }catch (Exception e){
                         LogUtils.d(e.toString().toString());
                     }
                     break;
@@ -110,7 +115,7 @@ class AggregationAdapter extends RecyclerView.Adapter<AggregationAdapter.MyViewH
      * @param copyStr
      * @return
      */
-    private boolean copy(Context context, String copyStr) {
+    private boolean copy(Context context,String copyStr) {
         try {
             //获取剪贴板管理器
             ClipboardManager cm = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);

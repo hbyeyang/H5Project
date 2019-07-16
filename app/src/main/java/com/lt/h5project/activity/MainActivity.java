@@ -1,9 +1,12 @@
-package com.lt.h5project;
+package com.lt.h5project.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+
+import com.lt.h5project.R;
+import com.lt.h5project.bean.AddressBean;
 
 public class MainActivity extends AppCompatActivity {
 

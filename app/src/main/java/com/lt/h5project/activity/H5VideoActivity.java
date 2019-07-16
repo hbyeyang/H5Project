@@ -1,10 +1,14 @@
-package com.lt.h5project;
+package com.lt.h5project.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
+import com.lt.h5project.R;
+import com.lt.h5project.adapter.VideoAdapter;
+import com.lt.h5project.constant.H5VideoAddressConstant;
 
 /**
  * @author yeyang

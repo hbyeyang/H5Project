@@ -1,4 +1,6 @@
-package com.lt.h5project;
+package com.lt.h5project.constant;
+
+import com.lt.h5project.bean.AddressBean;
 
 import java.util.ArrayList;
 import java.util.List;

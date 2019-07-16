@@ -1,7 +1,9 @@
-package com.lt.h5project;
+package com.lt.h5project.util;
 
 import android.text.TextUtils;
 import android.util.Log;
+
+import com.lt.h5project.BuildConfig;
 
 
 public class LogUtils {

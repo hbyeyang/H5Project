@@ -1,4 +1,4 @@
-package com.lt.h5project;
+package com.lt.h5project.bean;
 
 import java.io.Serializable;
 

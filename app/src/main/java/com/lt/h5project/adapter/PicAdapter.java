@@ -1,4 +1,4 @@
-package com.lt.h5project;
+package com.lt.h5project.adapter;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -14,6 +14,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.lt.h5project.R;
+import com.lt.h5project.activity.DetailsActivity;
+import com.lt.h5project.bean.AddressBean;
+import com.lt.h5project.util.LogUtils;
+
 import java.util.List;
 
 /**
@@ -26,7 +31,7 @@ import java.util.List;
  * @chang time
  * @class describe
  */
-class PicAdapter extends RecyclerView.Adapter<PicAdapter.MyViewHolder> {
+public class PicAdapter extends RecyclerView.Adapter<PicAdapter.MyViewHolder> {
     private Context mContext;
     private List<AddressBean> mList;
     private View inflater;
