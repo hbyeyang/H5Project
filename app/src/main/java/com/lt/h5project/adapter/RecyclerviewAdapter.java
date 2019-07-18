@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +19,7 @@ import com.lt.h5project.R;
 import com.lt.h5project.activity.DetailsActivity;
 import com.lt.h5project.bean.AddressBean;
 import com.lt.h5project.util.LogUtils;
+import com.lt.h5project.view.UMExpandLayout;
 
 import java.util.List;
 
@@ -45,12 +47,28 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         inflater = LayoutInflater.from(mContext).inflate(R.layout.item_context, parent, false);
         MyViewHolder myViewHolder = new MyViewHolder(inflater);
+//        myViewHolder.umeItem.collapse();
         return myViewHolder;
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public int getItemViewType(int position) {
+        return position;
+    }
+
+    @Override
+    public void onBindViewHolder(final MyViewHolder holder, int position) {
         final AddressBean addressBean = mList.get(position);
+        holder.llItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (holder.umeItem.isExpand()){
+                    holder.umeItem.collapse();
+                }else {
+                    holder.umeItem.expand();
+                }
+            }
+        });
         holder.tvNum.setText(String.valueOf(addressBean.number));
         holder.tvDomai_name.setText(addressBean.domainame);
         holder.tvChannelName.setText(addressBean.ChannelName);
@@ -83,6 +101,13 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
                 message.obj = addressBean;
                 message.what = 1;
                 mHandler.sendMessage(message);
+            }
+        });
+
+        holder.llChannel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DetailsActivity.launch(mContext, addressBean);
             }
         });
     }
@@ -134,6 +159,9 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
 
     //内部类，绑定控件
     class MyViewHolder extends RecyclerView.ViewHolder {
+        UMExpandLayout umeItem;
+        LinearLayout llItem;
+        LinearLayout llChannel;
         TextView tvNum;
         TextView tvDomai_name;
         TextView tvChannelName;
@@ -144,6 +172,9 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
 
         public MyViewHolder(View itemView) {
             super(itemView);
+            umeItem = (UMExpandLayout) itemView.findViewById(R.id.ume_item);
+            llItem = (LinearLayout) itemView.findViewById(R.id.ll_item);
+            llChannel = (LinearLayout) itemView.findViewById(R.id.ll_channel);
             tvNum = (TextView) itemView.findViewById(R.id.tv_num);
             tvDomai_name = (TextView) itemView.findViewById(R.id.tv_domai_name);
             tvChannelName = (TextView) itemView.findViewById(R.id.tv_channel_name);
@@ -151,6 +182,7 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
             tvNei = (TextView) itemView.findViewById(R.id.tv_nei);
             tvWai = (TextView) itemView.findViewById(R.id.tv_wai);
             tvCopy = (TextView) itemView.findViewById(R.id.tv_copy);
+//            umeItem.collapse();
         }
     }
 }
