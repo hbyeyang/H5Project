@@ -55,10 +55,22 @@
         android:textSize="18sp"/>
 
     <TextView
-        android:id="@+id/tv_standby_application"
+        android:id="@+id/tv_cartoon"
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:layout_below="@+id/tv_agg"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:text="漫画"
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/tv_standby_application"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/tv_cartoon"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:gravity="center"

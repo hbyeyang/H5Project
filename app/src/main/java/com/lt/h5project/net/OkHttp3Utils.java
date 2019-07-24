@@ -8,7 +8,7 @@ import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.blankj.utilcode.util.Utils;
+import com.lt.h5project.activity.MyApplication;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -29,6 +29,8 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+
+//import com.blankj.utilcode.util.Utils;
 
 /**
  * @author yeyang
@@ -288,7 +290,7 @@ public class OkHttp3Utils {
             // 无网络时，设置超时为1天
             int maxStale = 60 * 60 * 24;
             Request request = chain.request();
-            if (NetWorkUtils.isNetWorkAvailable(Utils.getApp())) {
+            if (NetWorkUtils.isNetWorkAvailable(MyApplication.getContext())) {
                 //有网络时只从网络获取
                 request = request.newBuilder().cacheControl(CacheControl.FORCE_NETWORK).build();
             } else {
@@ -299,7 +301,7 @@ public class OkHttp3Utils {
                 Looper.loop();*/
             }
             Response response = chain.proceed(request);
-            if (NetWorkUtils.isNetWorkAvailable(Utils.getApp())) {
+            if (NetWorkUtils.isNetWorkAvailable(MyApplication.getContext())) {
                 response = response.newBuilder()
                         .removeHeader("Pragma")
                         .header("Cache-Control", "public, max-age=" + maxAge)

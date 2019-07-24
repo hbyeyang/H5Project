@@ -8,7 +8,6 @@ import android.view.View;
 
 import com.lt.h5project.R;
 import com.lt.h5project.adapter.RecyclerviewAdapter;
-import com.lt.h5project.constant.H5ReadAddressConstant;
 
 /**
  * @author yeyang
@@ -38,8 +37,9 @@ public class H5ReadActivity extends AppCompatActivity {
         //设置布局管理器
         mRyRead.setLayoutManager(new LinearLayoutManager(this));
 
-        H5ReadAddressConstant h5ReadAddressConstant = new H5ReadAddressConstant();
+//        H5ReadAddressConstant h5ReadAddressConstant = new H5ReadAddressConstant();
         //设置adapter
-        mRyRead.setAdapter(new RecyclerviewAdapter(this,h5ReadAddressConstant.ReadList));
+//        mRyRead.setAdapter(new RecyclerviewAdapter(this,h5ReadAddressConstant.ReadList));
+        mRyRead.setAdapter(new RecyclerviewAdapter(this,MainActivity.mReadList));
     }
 }

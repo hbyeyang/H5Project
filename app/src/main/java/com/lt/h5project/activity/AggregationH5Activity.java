@@ -8,7 +8,6 @@ import android.view.View;
 
 import com.lt.h5project.R;
 import com.lt.h5project.adapter.RecyclerviewAdapter;
-import com.lt.h5project.constant.H5AggregationAddressConstant;
 
 /**
  * @author yeyang
@@ -37,8 +36,9 @@ public class AggregationH5Activity extends AppCompatActivity {
         //设置布局管理器
         mRyAggregation.setLayoutManager(new LinearLayoutManager(this));
 
-        H5AggregationAddressConstant h5AggregationAddressConstant = new H5AggregationAddressConstant();
-        //设置adapter
-        mRyAggregation.setAdapter(new RecyclerviewAdapter(this,h5AggregationAddressConstant.AggregationList));
+//        H5AggregationAddressConstant h5AggregationAddressConstant = new H5AggregationAddressConstant();
+//        //设置adapter
+//        mRyAggregation.setAdapter(new RecyclerviewAdapter(this,h5AggregationAddressConstant.AggregationList));
+        mRyAggregation.setAdapter(new RecyclerviewAdapter(this,MainActivity.mAggregationList));
     }
 }

@@ -12,33 +12,29 @@ import com.lt.h5project.adapter.RecyclerviewAdapter;
 /**
  * @author yeyang
  * @name H5project
- * @class name：com.lt.h5project
+ * @class name：com.lt.h5project.activity
  * @class describe
- * @time 2019-06-18 10:09
+ * @time 2019-07-24 18:15
  * @change
  * @chang time
  * @class describe
  */
-public class H5PicActivity extends AppCompatActivity {
-    private RecyclerView mRyPic;
+public class CartoonActivity extends AppCompatActivity {
+    private RecyclerView mRyCartoon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_h5_pic);
+        setContentView(R.layout.activity_h5_cartoon);
         findViewById(R.id.tv_back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-        mRyPic = findViewById(R.id.ry_pic);
+        mRyCartoon = findViewById(R.id.ry_cartoon);
         //设置布局管理器
-        mRyPic.setLayoutManager(new LinearLayoutManager(this));
-
-//        H5PicAddressConstant h5PicAddressConstant = new H5PicAddressConstant();
-//        //设置adapter
-//        mRyPic.setAdapter(new RecyclerviewAdapter(this,h5PicAddressConstant.PicList));
-        mRyPic.setAdapter(new RecyclerviewAdapter(this,MainActivity.mPicList));
+        mRyCartoon.setLayoutManager(new LinearLayoutManager(this));
+        mRyCartoon.setAdapter(new RecyclerviewAdapter(this,MainActivity.mPicList));
     }
 }

@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 import com.lt.h5project.R;
 import com.lt.h5project.activity.DetailsActivity;
-import com.lt.h5project.bean.AddressBean;
+import com.lt.h5project.bean.NetUrlBean;
 import com.lt.h5project.util.LogUtils;
 import com.lt.h5project.view.UMExpandLayout;
 
@@ -35,10 +35,10 @@ import java.util.List;
  */
 public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapter.MyViewHolder> {
     private Context mContext;
-    private List<AddressBean> mList;
+    private List<NetUrlBean.DataEntity> mList;
     private View inflater;
 
-    public RecyclerviewAdapter(Context context, List<AddressBean> list) {
+    public RecyclerviewAdapter(Context context, List<NetUrlBean.DataEntity> list) {
         mContext = context;
         mList = list;
     }
@@ -58,26 +58,29 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
-        final AddressBean addressBean = mList.get(position);
+        final NetUrlBean.DataEntity dataEntity = mList.get(position);
+        LogUtils.d(dataEntity.number + "..." + dataEntity.name + "..." + dataEntity.url);
         holder.llItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (holder.umeItem.isExpand()){
+                if (holder.umeItem.isExpand()) {
                     holder.umeItem.collapse();
-                }else {
+                } else {
                     holder.umeItem.expand();
                 }
             }
         });
-        holder.tvNum.setText(String.valueOf(addressBean.number));
-        holder.tvDomai_name.setText(addressBean.domainame);
-        holder.tvChannelName.setText(addressBean.ChannelName);
-        holder.tvChannelAddress.setText(addressBean.ChannelAddress);
+        holder.tvNum.setText(String.valueOf(dataEntity.number));
+//        holder.tvDomai_name.setText(dataEntity.domainame);
+        holder.tvChannelName.setText(dataEntity.name);
+        holder.tvChannelAddress.setText(dataEntity.url);
+        holder.tvUv.setText(String.valueOf(dataEntity.uv));
+//        holder.tvPv.setText(String.valueOf(dataEntity.pv));
         holder.tvNei.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 LogUtils.d("内跳");
-                DetailsActivity.launch(mContext, addressBean);
+                DetailsActivity.launch(mContext, dataEntity);
             }
         });
 
@@ -87,7 +90,7 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
                 LogUtils.d("外跳");
                 Intent intent = new Intent();
                 intent.setAction("android.intent.action.VIEW");
-                Uri content_url = Uri.parse(addressBean.ChannelAddress);
+                Uri content_url = Uri.parse(dataEntity.url);
                 intent.setData(content_url);
                 mContext.startActivity(intent);
             }
@@ -98,7 +101,7 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
             public void onClick(View v) {
                 LogUtils.d("复制");
                 Message message = new Message();
-                message.obj = addressBean;
+                message.obj = dataEntity;
                 message.what = 1;
                 mHandler.sendMessage(message);
             }
@@ -107,22 +110,22 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
         holder.llChannel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DetailsActivity.launch(mContext, addressBean);
+                DetailsActivity.launch(mContext, dataEntity);
             }
         });
     }
 
-    Handler mHandler = new Handler(){
+    Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             switch (msg.what) {
                 case 1:
                     try {
-                        AddressBean addressBean = (AddressBean) msg.obj;
-                        copy(mContext, addressBean.ChannelAddress);
+                        NetUrlBean.DataEntity dataEntity = (NetUrlBean.DataEntity) msg.obj;
+                        copy(mContext, dataEntity.url);
                         Toast.makeText(mContext, "复制成功", Toast.LENGTH_SHORT).show();
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         LogUtils.d(e.toString().toString());
                     }
                     break;
@@ -138,7 +141,7 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
      * @param copyStr
      * @return
      */
-    private boolean copy(Context context,String copyStr) {
+    private boolean copy(Context context, String copyStr) {
         try {
             //获取剪贴板管理器
             ClipboardManager cm = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
@@ -169,6 +172,8 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
         TextView tvNei;
         TextView tvWai;
         TextView tvCopy;
+        TextView tvUv;
+//        TextView tvPv;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -182,6 +187,8 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
             tvNei = (TextView) itemView.findViewById(R.id.tv_nei);
             tvWai = (TextView) itemView.findViewById(R.id.tv_wai);
             tvCopy = (TextView) itemView.findViewById(R.id.tv_copy);
+            tvUv = (TextView) itemView.findViewById(R.id.tv_uv);
+//            tvPv = (TextView) itemView.findViewById(R.id.tv_pv);
 //            umeItem.collapse();
         }
     }

@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.lt.h5project.R;
-import com.lt.h5project.bean.AddressBean;
+import com.lt.h5project.bean.NetUrlBean;
 import com.tencent.smtt.export.external.interfaces.WebResourceError;
 import com.tencent.smtt.export.external.interfaces.WebResourceRequest;
 import com.tencent.smtt.sdk.WebSettings;
@@ -32,9 +32,9 @@ public class DetailsActivity extends AppCompatActivity {
     private WebView mWebView;
 
 
-    public static void launch(Context context, AddressBean addressBean) {
+    public static void launch(Context context, NetUrlBean.DataEntity dataEntity) {
         Intent intent = new Intent(context, DetailsActivity.class);
-        intent.putExtra("data", addressBean);
+        intent.putExtra("data", dataEntity);
         context.startActivity(intent);
     }
 
@@ -52,9 +52,9 @@ public class DetailsActivity extends AppCompatActivity {
             }
         });
         Intent intent = getIntent();
-        final AddressBean addressBean = (AddressBean) intent.getSerializableExtra("data");
+        final NetUrlBean.DataEntity dataEntity = (NetUrlBean.DataEntity) intent.getSerializableExtra("data");
         initWebView();
-        loadUrl(tvTitle, addressBean);
+        loadUrl(tvTitle, dataEntity);
 //        final SwipeRefreshLayout refreshLayout = findViewById(R.id.refresh);
 //        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 //            @Override
@@ -67,16 +67,16 @@ public class DetailsActivity extends AppCompatActivity {
         findViewById(R.id.tv_refresh).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadUrl(tvTitle, addressBean);
+                loadUrl(tvTitle, dataEntity);
             }
         });
 
 
     }
 
-    private void loadUrl(TextView tvTitle, AddressBean addressBean) {
-        tvTitle.setText(addressBean.ChannelName);
-        mWebView.loadUrl(addressBean.ChannelAddress);
+    private void loadUrl(TextView tvTitle, NetUrlBean.DataEntity dataEntity) {
+        tvTitle.setText(dataEntity.name);
+        mWebView.loadUrl(loadUrl(dataEntity.url));
 
         mWebView.setWebViewClient(new WebViewClient() {
 
@@ -136,6 +136,14 @@ public class DetailsActivity extends AppCompatActivity {
         webSettings.setLoadsImagesAutomatically(true); //支持自动加载图片
         webSettings.setDefaultTextEncodingName("utf-8");//设置编码格式
 
+    }
+
+    private String loadUrl(String url) {
+        if (!url.startsWith("http")) {
+            url = "http://" + url;
+            return url;
+        }
+        return url;
     }
 
     @Override

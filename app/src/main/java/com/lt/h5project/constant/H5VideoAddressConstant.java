@@ -16,12 +16,12 @@ import java.util.List;
  * @class describe
  */
 public class H5VideoAddressConstant {
-    public static List<AddressBean> PicList = new ArrayList<>();
+    public static List<AddressBean> VideoList = new ArrayList<>();
 
     public H5VideoAddressConstant() {
-        if (PicList != null && PicList.size() > 0) {
+        if (VideoList != null && VideoList.size() > 0) {
             return;
         }
-        PicList.add(new AddressBean(1, "爆米花01", "爆米花01", "http://t.channel.45xie.com/api/api?action=showpage&page=videolist&appid=5F963A4CFF18B38CAC7762A78FC13850&_pos=home&guest=s"));
+        VideoList.add(new AddressBean(1, "爆米花01", "爆米花01", "http://t.channel.45xie.com/api/api?action=showpage&page=videolist&appid=5F963A4CFF18B38CAC7762A78FC13850&_pos=home&guest=s"));
     }
 }

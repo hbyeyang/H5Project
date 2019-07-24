@@ -8,7 +8,6 @@ import android.view.View;
 
 import com.lt.h5project.R;
 import com.lt.h5project.adapter.RecyclerviewAdapter;
-import com.lt.h5project.constant.H5VideoAddressConstant;
 
 /**
  * @author yeyang
@@ -37,8 +36,9 @@ public class H5VideoActivity extends AppCompatActivity {
         //设置布局管理器
         mRyVideo.setLayoutManager(new LinearLayoutManager(this));
 
-        H5VideoAddressConstant h5VideoAddressConstant = new H5VideoAddressConstant();
-        //设置adapter
-        mRyVideo.setAdapter(new RecyclerviewAdapter(this, h5VideoAddressConstant.PicList));
+//        H5VideoAddressConstant h5VideoAddressConstant = new H5VideoAddressConstant();
+//        //设置adapter
+//        mRyVideo.setAdapter(new RecyclerviewAdapter(this, h5VideoAddressConstant.VideoList));
+        mRyVideo.setAdapter(new RecyclerviewAdapter(this, MainActivity.mVideoList));
     }
 }
