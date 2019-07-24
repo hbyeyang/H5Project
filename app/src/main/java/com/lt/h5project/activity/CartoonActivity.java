@@ -35,6 +35,6 @@ public class CartoonActivity extends AppCompatActivity {
         mRyCartoon = findViewById(R.id.ry_cartoon);
         //设置布局管理器
         mRyCartoon.setLayoutManager(new LinearLayoutManager(this));
-        mRyCartoon.setAdapter(new RecyclerviewAdapter(this,MainActivity.mPicList));
+        mRyCartoon.setAdapter(new RecyclerviewAdapter(this,MainActivity.mCartoonList));
     }
 }
