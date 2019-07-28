@@ -1,5 +1,7 @@
 package com.lt.h5project.bean;
 
+import android.support.annotation.NonNull;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -24,7 +26,7 @@ public class NetUrlBean implements Serializable {
     public String ret;
     public List<DataEntity> data;
 
-    public static class DataEntity implements Serializable {
+    public static class DataEntity implements Serializable, Comparable<DataEntity> {
         /**
          * url : huitoutiao.pipeline.letupower.cn
          * type : 1
@@ -42,6 +44,15 @@ public class NetUrlBean implements Serializable {
             this.name = name;
             this.pv = pv;
             this.uv = uv;
+        }
+
+        @Override
+        public int compareTo(@NonNull DataEntity o) {
+            int i = this.uv - o.uv;//先按uv排序
+            if (i == 0) {
+                return this.pv - o.pv;//如果uv相等了再用分数进行排序
+            }
+            return i;
         }
     }
 }

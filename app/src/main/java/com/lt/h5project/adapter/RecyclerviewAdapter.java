@@ -21,6 +21,7 @@ import com.lt.h5project.bean.NetUrlBean;
 import com.lt.h5project.util.LogUtils;
 import com.lt.h5project.view.UMExpandLayout;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 /**
@@ -64,9 +65,27 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
             @Override
             public void onClick(View v) {
                 if (holder.umeItem.isExpand()) {
+                    LogUtils.d("isExpand:" + holder.umeItem.isExpand());
                     holder.umeItem.collapse();
+                    holder.tvItem.setText("展开");
                 } else {
+                    LogUtils.d("isExpand:" + holder.umeItem.isExpand());
                     holder.umeItem.expand();
+                    holder.tvItem.setText("缩起");
+                }
+            }
+        });
+        holder.tvItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (holder.umeItem.isExpand()) {
+                    LogUtils.d("isExpand:" + holder.umeItem.isExpand());
+                    holder.umeItem.collapse();
+                    holder.tvItem.setText("展开");
+                } else {
+                    LogUtils.d("isExpand:" + holder.umeItem.isExpand());
+                    holder.umeItem.expand();
+                    holder.tvItem.setText("缩起");
                 }
             }
         });
@@ -74,8 +93,10 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
 //        holder.tvDomai_name.setText(dataEntity.domainame);
         holder.tvChannelName.setText(dataEntity.name);
         holder.tvChannelAddress.setText(dataEntity.url);
-        holder.tvUv.setText(String.valueOf(dataEntity.uv));
+//        holder.tvUv.setText(String.valueOf(dataEntity.uv));
 //        holder.tvPv.setText(String.valueOf(dataEntity.pv));
+        holder.tvUv.setText(addComma(String.valueOf(dataEntity.uv)));
+        holder.tvPv.setText(addComma(String.valueOf(dataEntity.pv)));
         holder.tvNei.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,7 +111,8 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
                 LogUtils.d("外跳");
                 Intent intent = new Intent();
                 intent.setAction("android.intent.action.VIEW");
-                Uri content_url = Uri.parse(dataEntity.url);
+//                Uri content_url = Uri.parse(dataEntity.url);
+                Uri content_url = Uri.parse(loadUrl(dataEntity.url));
                 intent.setData(content_url);
                 mContext.startActivity(intent);
             }
@@ -115,6 +137,25 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
         });
     }
 
+    private String loadUrl(String url) {
+        if (!url.startsWith("http")) {
+            url = "http://" + url;
+            return url;
+        }
+        return url;
+    }
+
+    /**
+     * 将每三个数字加上逗号处理（通常使用金额方面的编辑）
+     *
+     * @param str 需要处理的字符串
+     * @return 处理完之后的字符串
+     */
+    private String addComma(String str) {
+        DecimalFormat decimalFormat = new DecimalFormat(",###");
+        return decimalFormat.format(Double.parseDouble(str));
+    }
+
     Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -123,7 +164,7 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
                 case 1:
                     try {
                         NetUrlBean.DataEntity dataEntity = (NetUrlBean.DataEntity) msg.obj;
-                        copy(mContext, dataEntity.url);
+                        copy(mContext, loadUrl(dataEntity.url));
                         Toast.makeText(mContext, "复制成功", Toast.LENGTH_SHORT).show();
                     } catch (Exception e) {
                         LogUtils.d(e.toString().toString());
@@ -173,7 +214,8 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
         TextView tvWai;
         TextView tvCopy;
         TextView tvUv;
-//        TextView tvPv;
+        TextView tvPv;
+        TextView tvItem;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -188,7 +230,8 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
             tvWai = (TextView) itemView.findViewById(R.id.tv_wai);
             tvCopy = (TextView) itemView.findViewById(R.id.tv_copy);
             tvUv = (TextView) itemView.findViewById(R.id.tv_uv);
-//            tvPv = (TextView) itemView.findViewById(R.id.tv_pv);
+            tvPv = (TextView) itemView.findViewById(R.id.tv_pv);
+            tvItem = (TextView) itemView.findViewById(R.id.tv_item);
 //            umeItem.collapse();
         }
     }

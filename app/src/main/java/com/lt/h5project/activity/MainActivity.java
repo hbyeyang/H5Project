@@ -18,6 +18,7 @@ import com.lt.h5project.util.LogUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,8 +43,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        getNetUrl();
+        if (mReadList.size() == 0 && mPicList.size() == 0) {
+            getNetUrl();
+        }
 
         findViewById(R.id.tv_read).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,8 +101,10 @@ public class MainActivity extends AppCompatActivity {
 //                    urlDeatail(data, 2, mAggregationList);
 //                    urlDeatail(data, 3, mPicList);
 //                    urlDeatail(data, 4, mVideoList);
-
-
+                    //排序
+                    Collections.sort(data);
+                    //倒序
+                    Collections.reverse(data);
                     urlDeatail(data);
 //                    getLocUrl();
                 } else {
