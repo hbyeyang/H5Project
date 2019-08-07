@@ -14,13 +14,9 @@ package com.lt.h5project.net;
 public class NetAddress {
 
     // 测试环境
-//    public static String BASE_URL = "http://api.sdk.alpha.letupower.cn/api.php?r=api/index";
-    public static String BASE_URL = "http://t.alpha.channel.45xie.com/api/api?action=adapi";
+//    public static String BASE_URL = "http://t.alpha.channel.45xie.com/api/api?action=adapi";
 
-//    // 线上环境
-//    public static String BASE_URL = "https://api.ic.letupower.cn/api.php?r=api/index";
-
-    //旧域名
-//    public static String BASE_URL = "http://api.ad.letupower.cn/api.php?r=api/index";
+    //    // 线上环境
+    public static String BASE_URL = "http://t.channel.45xie.com/api/api?action=adapi";
 
 }
