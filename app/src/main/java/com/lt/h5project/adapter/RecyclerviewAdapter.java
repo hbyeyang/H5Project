@@ -95,6 +95,7 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
         holder.tvChannelAddress.setText(dataEntity.url);
 //        holder.tvUv.setText(String.valueOf(dataEntity.uv));
 //        holder.tvPv.setText(String.valueOf(dataEntity.pv));
+        holder.tvChannelNameDetails.setText(dataEntity.name);
         holder.tvUv.setText(addComma(String.valueOf(dataEntity.uv)));
         holder.tvPv.setText(addComma(String.valueOf(dataEntity.pv)));
         holder.tvNei.setOnClickListener(new View.OnClickListener() {
@@ -209,6 +210,7 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
         TextView tvNum;
         TextView tvDomai_name;
         TextView tvChannelName;
+        TextView tvChannelNameDetails;
         TextView tvChannelAddress;
         TextView tvNei;
         TextView tvWai;
@@ -225,6 +227,7 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
             tvNum = (TextView) itemView.findViewById(R.id.tv_num);
             tvDomai_name = (TextView) itemView.findViewById(R.id.tv_domai_name);
             tvChannelName = (TextView) itemView.findViewById(R.id.tv_channel_name);
+            tvChannelNameDetails = (TextView) itemView.findViewById(R.id.tv_channel_name_details);
             tvChannelAddress = (TextView) itemView.findViewById(R.id.tv_channel_address);
             tvNei = (TextView) itemView.findViewById(R.id.tv_nei);
             tvWai = (TextView) itemView.findViewById(R.id.tv_wai);
