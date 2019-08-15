@@ -30,6 +30,7 @@
         <activity android:name=".activity.H5VideoActivity"/>
         <activity android:name=".activity.AggregationH5Activity"/>
         <activity android:name=".activity.CartoonActivity"/>
+        <activity android:name=".activity.CookBookActivity"/>
         <activity android:name=".activity.DetailsActivity"/>
     </application>
 

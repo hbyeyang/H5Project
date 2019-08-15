@@ -8,6 +8,7 @@ import android.view.View;
 import com.lt.h5project.R;
 import com.lt.h5project.bean.NetUrlBean;
 import com.lt.h5project.constant.H5AggregationAddressConstant;
+import com.lt.h5project.constant.H5CookBookAddressConstant;
 import com.lt.h5project.constant.H5PicAddressConstant;
 import com.lt.h5project.constant.H5ReadAddressConstant;
 import com.lt.h5project.constant.H5VideoAddressConstant;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     ;
     public static List<NetUrlBean.DataEntity> mVideoList = new ArrayList<>();
     public static List<NetUrlBean.DataEntity> mCartoonList = new ArrayList<>();
+    public static List<NetUrlBean.DataEntity> mCookBookList = new ArrayList<>();
     ;
 
     @Override
@@ -79,6 +81,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 MainActivity.this.startActivity(new Intent(MainActivity.this, CartoonActivity.class));
+            }
+        });
+
+        findViewById(R.id.tv_cookbook).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.this.startActivity(new Intent(MainActivity.this, CookBookActivity.class));
             }
         });
 
@@ -126,11 +135,13 @@ public class MainActivity extends AppCompatActivity {
         H5AggregationAddressConstant h5AggregationAddressConstant = new H5AggregationAddressConstant();
         H5PicAddressConstant h5PicAddressConstant = new H5PicAddressConstant();
         H5VideoAddressConstant h5VideoAddressConstant = new H5VideoAddressConstant();
+        H5CookBookAddressConstant h5CookBookAddressConstant = new H5CookBookAddressConstant();
 
         setReadLoc(h5ReadAddressConstant, mReadList);
         setAggLoc(h5AggregationAddressConstant, mAggregationList);
         setPicLoc(h5PicAddressConstant, mPicList);
         setVideoLoc(h5VideoAddressConstant, mVideoList);
+        setCookBookLoc(h5CookBookAddressConstant, mCookBookList);
     }
 
     private void setReadLoc(H5ReadAddressConstant h5ReadAddressConstant, List<NetUrlBean.DataEntity> List) {
@@ -165,6 +176,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void setCookBookLoc(H5CookBookAddressConstant h5CookBookAddressConstant, List<NetUrlBean.DataEntity> List) {
+        if (List != null && List.size() <= 0) {
+            for (int i = 0; i < h5CookBookAddressConstant.CookBookList.size(); i++) {
+                List.add(new NetUrlBean.DataEntity(i, h5CookBookAddressConstant.CookBookList.get(i).ChannelAddress, h5CookBookAddressConstant.CookBookList.get(i).ChannelName, 0, 0));
+            }
+        }
+    }
+
     private void urlDeatail(List<NetUrlBean.DataEntity> data) {
         if (data != null && data.size() > 0) {
             for (int i = 0; i < data.size(); i++) {
@@ -179,12 +198,15 @@ public class MainActivity extends AppCompatActivity {
                     mVideoList.add(new NetUrlBean.DataEntity(mVideoList.size(), data.get(i).url, data.get(i).name, data.get(i).pv, data.get(i).uv));
                 } else if (data.get(i).type == 5) {
                     mCartoonList.add(new NetUrlBean.DataEntity(mCartoonList.size(), data.get(i).url, data.get(i).name, data.get(i).pv, data.get(i).uv));
+                } else if (data.get(i).type == 6) {
+                    mCookBookList.add(new NetUrlBean.DataEntity(mCookBookList.size(), data.get(i).url, data.get(i).name, data.get(i).pv, data.get(i).uv));
                 }
             }
             LogUtils.d(TAG + mReadList.size());
             LogUtils.d(TAG + mAggregationList.size());
             LogUtils.d(TAG + mPicList.size());
             LogUtils.d(TAG + mVideoList.size());
+            LogUtils.d(TAG + mCookBookList.size());
         }
     }
 }
