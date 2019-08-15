@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lt.h5project.R;
 import com.lt.h5project.bean.NetUrlBean;
@@ -71,6 +72,14 @@ public class DetailsActivity extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.tv_clean_cache).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mWebView.clearCache(true);
+                Toast.makeText(MyApplication.getContext(),"缓存清理完毕",Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
     }
 
@@ -130,7 +139,8 @@ public class DetailsActivity extends AppCompatActivity {
         webSettings.setLoadsImagesAutomatically(true);
 
         //其他细节操作
-        webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE); //关闭webview中缓存
+        webSettings.setCacheMode(WebSettings.LOAD_NORMAL);
+//        webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE); //关闭webview中缓存
         webSettings.setAllowFileAccess(true); //设置可以访问文件
         webSettings.setJavaScriptCanOpenWindowsAutomatically(true); //支持通过JS打开新窗口
         webSettings.setLoadsImagesAutomatically(true); //支持自动加载图片
@@ -149,6 +159,6 @@ public class DetailsActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mWebView.clearCache(true);
+//        mWebView.clearCache(true);
     }
 }
