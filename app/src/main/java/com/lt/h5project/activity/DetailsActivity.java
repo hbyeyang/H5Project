@@ -7,16 +7,21 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.webkit.WebResourceError;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lt.h5project.R;
 import com.lt.h5project.bean.NetUrlBean;
-import com.tencent.smtt.export.external.interfaces.WebResourceError;
-import com.tencent.smtt.export.external.interfaces.WebResourceRequest;
-import com.tencent.smtt.sdk.WebSettings;
-import com.tencent.smtt.sdk.WebView;
-import com.tencent.smtt.sdk.WebViewClient;
+//import com.tencent.smtt.export.external.interfaces.WebResourceError;
+//import com.tencent.smtt.export.external.interfaces.WebResourceRequest;
+//import com.tencent.smtt.sdk.WebSettings;
+//import com.tencent.smtt.sdk.WebView;
+//import com.tencent.smtt.sdk.WebViewClient;
 
 /**
  * @author yeyang
@@ -86,7 +91,6 @@ public class DetailsActivity extends AppCompatActivity {
     private void loadUrl(TextView tvTitle, NetUrlBean.DataEntity dataEntity) {
         tvTitle.setText(dataEntity.name);
         mWebView.loadUrl(loadUrl(dataEntity.url));
-
         mWebView.setWebViewClient(new WebViewClient() {
 
             @Override
@@ -114,6 +118,17 @@ public class DetailsActivity extends AppCompatActivity {
                 super.onReceivedError(view, request, error);
             }
         });
+//        mWebView.setDownloadListener(new DownloadListener() {
+//            @Override
+//            public void onDownloadStart(String url, String userAgent, String contentDisposition, String mimetype, long contentLength) {
+//                // 获取文件名称，在我的项目测试之后发现得到的是乱码
+//                Uri uri = Uri.parse(url);
+//
+//                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+//
+//                startActivity(intent);
+//            }
+//        });
     }
 
     /**

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lt.h5project.R;
 import com.lt.h5project.bean.NetUrlBean;
@@ -134,7 +135,10 @@ public class MainActivity extends AppCompatActivity {
         mTvStandbyApplication.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(MainActivity.this,"点击",Toast.LENGTH_SHORT).show();
                 DetailsActivity.launch(MainActivity.this, new NetUrlBean.DataEntity(0, "http://t.alpha.channel.45xie.com/ad.html", "备用代码位", 0, 0));
+//                DetailsActivity.launch(MainActivity.this, new NetUrlBean.DataEntity(0, "https://m.xi5jie.com/install/land?channelCode=letu", "备用代码位", 0, 0));
+//                DetailsActivity.launch(MainActivity.this, new NetUrlBean.DataEntity(0, "http://a.app.qq.com/o/simple.jsp?pkgname=com.xszn.ime&ckey=CK1429286954552", "备用代码位", 0, 0));
             }
         });
 //        findViewById(R.id.tv_read).setOnClickListener(new View.OnClickListener() {
