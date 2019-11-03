@@ -35,6 +35,7 @@
         <activity android:name=".activity.BeautyActivity"/>
         <activity android:name=".activity.CarActivity"/>
         <activity android:name=".activity.DetailsActivity"/>
+        <activity android:name=".activity.ClassActivity"/>
     </application>
 
 </manifest>

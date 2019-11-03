@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.MainActivity">
 
-    <android.support.v4.widget.NestedScrollView android:layout_width="match_parent"
-                                                android:layout_height="match_parent">
-        <RelativeLayout android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/tv_h5_count"
@@ -20,19 +22,19 @@
                 android:gravity="center"
                 android:text="H5链接数"
                 android:textColor="@color/colorAccent"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tv_read"
-                android:layout_below="@+id/tv_h5_count"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
+                android:layout_below="@+id/tv_h5_count"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="50dp"
                 android:gravity="center"
                 android:text="H5小说"
                 android:textColor="@color/colorAccent"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
 
 
             <TextView
@@ -45,7 +47,7 @@
                 android:gravity="center"
                 android:text="美图"
                 android:textColor="@color/colorAccent"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tv_video"
@@ -57,7 +59,7 @@
                 android:gravity="center"
                 android:text="视频"
                 android:textColor="@color/colorAccent"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tv_agg"
@@ -69,7 +71,7 @@
                 android:gravity="center"
                 android:text="聚合"
                 android:textColor="@color/colorAccent"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tv_cartoon"
@@ -81,7 +83,7 @@
                 android:gravity="center"
                 android:text="漫画"
                 android:textColor="@color/colorAccent"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tv_cookbook"
@@ -93,7 +95,7 @@
                 android:gravity="center"
                 android:text="菜谱"
                 android:textColor="@color/colorAccent"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tv_pic_context"
@@ -105,7 +107,7 @@
                 android:gravity="center"
                 android:text="图文"
                 android:textColor="@color/colorAccent"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tv_beauty"
@@ -117,7 +119,7 @@
                 android:gravity="center"
                 android:text="美妆"
                 android:textColor="@color/colorAccent"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tv_car"
@@ -129,20 +131,44 @@
                 android:gravity="center"
                 android:text="汽车"
                 android:textColor="@color/colorAccent"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/tv_standby_application"
+                android:id="@+id/tv_gold"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_below="@+id/tv_car"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="50dp"
+                android:gravity="center"
+                android:text="砸金蛋"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_new_pic"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_below="@+id/tv_gold"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"
+                android:gravity="center"
+                android:text="新美图"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_standby_application"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_below="@+id/tv_new_pic"
+                android:layout_centerHorizontal="true"
                 android:layout_marginBottom="50dp"
+                android:layout_marginTop="50dp"
                 android:gravity="center"
                 android:text="备用"
                 android:textColor="@color/colorAccent"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
 
         </RelativeLayout>
     </android.support.v4.widget.NestedScrollView>

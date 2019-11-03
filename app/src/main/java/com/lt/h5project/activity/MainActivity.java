@@ -1,6 +1,5 @@
 package com.lt.h5project.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,6 +11,7 @@ import com.lt.h5project.bean.NetUrlBean;
 import com.lt.h5project.constant.H5AggregationAddressConstant;
 import com.lt.h5project.constant.H5BeautyConstant;
 import com.lt.h5project.constant.H5CarConstant;
+import com.lt.h5project.constant.H5Constant;
 import com.lt.h5project.constant.H5CookBookAddressConstant;
 import com.lt.h5project.constant.H5PicAddressConstant;
 import com.lt.h5project.constant.H5PicContextAddressConstant;
@@ -48,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
     private int mPicContextCount;//图文链接
     private int mBeautyCount;//美妆链接
     private int mCarCount;//汽车链接
+    private int mGoldCount;//砸金蛋链接
+    private int mNewPicCount;//新美图链接
 
     private int mH5CountUv;//总链接数
     private int mReadCountUv;//小说链接
@@ -59,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
     private int mPicContextCountUv;//图文链接
     private int mBeautyCountUv;//美妆链接
     private int mCarCountUv;//汽车链接
+    private int mGoldCountUv;//砸金蛋链接
+    private int mNewPicCountUv;//新美图链接
 
     private int mH5CountPv;//总链接数
     private int mReadCountPv;//小说链接
@@ -70,6 +74,8 @@ public class MainActivity extends AppCompatActivity {
     private int mPicContextCountPv;//图文链接
     private int mBeautyCountPv;//美妆链接
     private int mCarCountPv;//汽车链接
+    private int mGoldCountPv;//汽车链接
+    private int mNewPicCountPv;//汽车链接
 
 
     public static List<NetUrlBean.DataEntity> mReadList = new ArrayList<>();
@@ -81,6 +87,8 @@ public class MainActivity extends AppCompatActivity {
     public static List<NetUrlBean.DataEntity> mPicContextList = new ArrayList<>();
     public static List<NetUrlBean.DataEntity> mBeautyList = new ArrayList<>();
     public static List<NetUrlBean.DataEntity> mCarList = new ArrayList<>();
+    public static List<NetUrlBean.DataEntity> mGoldList = new ArrayList<>();
+    public static List<NetUrlBean.DataEntity> mNewPicList = new ArrayList<>();
     private TextView mTvH5Count;
     private TextView mTvRead;
     private TextView mTvPic;
@@ -91,6 +99,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView mTvPicContext;
     private TextView mTvBeauty;
     private TextView mTvCar;
+    private TextView mTvGold;
+    private TextView mTvNewPic;
     private TextView mTvStandbyApplication;
 
     @Override
@@ -112,72 +122,87 @@ public class MainActivity extends AppCompatActivity {
         mTvPicContext = findViewById(R.id.tv_pic_context);
         mTvBeauty = findViewById(R.id.tv_beauty);
         mTvCar = findViewById(R.id.tv_car);
+        mTvGold = findViewById(R.id.tv_gold);
+        mTvNewPic = findViewById(R.id.tv_new_pic);
         mTvStandbyApplication = findViewById(R.id.tv_standby_application);
 
         mTvRead.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.this.startActivity(new Intent(MainActivity.this, H5ReadActivity.class));
+                ClassActivity.launch(MainActivity.this, 1);
             }
         });
 
         mTvPic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.this.startActivity(new Intent(MainActivity.this, H5PicActivity.class));
+                ClassActivity.launch(MainActivity.this, 2);
             }
         });
 
         mTvVideo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.this.startActivity(new Intent(MainActivity.this, H5VideoActivity.class));
+                ClassActivity.launch(MainActivity.this, 3);
             }
         });
         mTvAgg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.this.startActivity(new Intent(MainActivity.this, AggregationH5Activity.class));
+                ClassActivity.launch(MainActivity.this, 4);
             }
         });
         mTvCartoon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.this.startActivity(new Intent(MainActivity.this, CartoonActivity.class));
+                ClassActivity.launch(MainActivity.this, 5);
             }
         });
         mTvCookbook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.this.startActivity(new Intent(MainActivity.this, CookBookActivity.class));
+                ClassActivity.launch(MainActivity.this, 6);
             }
         });
 
         mTvPicContext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.this.startActivity(new Intent(MainActivity.this, PicContextActivity.class));
+                ClassActivity.launch(MainActivity.this, 7);
             }
         });
 
         mTvBeauty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.this.startActivity(new Intent(MainActivity.this, BeautyActivity.class));
+                ClassActivity.launch(MainActivity.this, 8);
             }
         });
         mTvCar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.this.startActivity(new Intent(MainActivity.this, CarActivity.class));
+                ClassActivity.launch(MainActivity.this, 9);
+            }
+        });
+        mTvGold.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ClassActivity.launch(MainActivity.this, 10);
+            }
+        });
+        mTvNewPic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ClassActivity.launch(MainActivity.this, 11);
             }
         });
 
         mTvStandbyApplication.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this,"点击",Toast.LENGTH_SHORT).show();
-                DetailsActivity.launch(MainActivity.this, new NetUrlBean.DataEntity(0, "http://t.alpha.channel.45xie.com/ad.html", "备用代码位", 0, 0));
+                Toast.makeText(MainActivity.this, "点击", Toast.LENGTH_SHORT).show();
+//                DetailsActivity.launch(MainActivity.this, new NetUrlBean.DataEntity(0, "http://t.alpha.channel.45xie.com/ad.html", "备用代码位", 0, 0));
+                DetailsActivity.launch(MainActivity.this, new NetUrlBean.DataEntity(0, "http://t.alpha.channel.45xie.com/cookbook/home.html?appid=B428109E4AA4E883DB8B1877BFF3575F", "测试菜谱", 0, 0));
 //                DetailsActivity.launch(MainActivity.this, new NetUrlBean.DataEntity(0, "https://m.xi5jie.com/install/land?channelCode=letu", "备用代码位", 0, 0));
 //                DetailsActivity.launch(MainActivity.this, new NetUrlBean.DataEntity(0, "http://a.app.qq.com/o/simple.jsp?pkgname=com.xszn.ime&ckey=CK1429286954552", "备用代码位", 0, 0));
             }
@@ -212,23 +237,36 @@ public class MainActivity extends AppCompatActivity {
 
     private void getLocUrl() {
         LogUtils.d("本地数据");
-        H5ReadAddressConstant h5ReadAddressConstant = new H5ReadAddressConstant();
-        H5AggregationAddressConstant h5AggregationAddressConstant = new H5AggregationAddressConstant();
-        H5PicAddressConstant h5PicAddressConstant = new H5PicAddressConstant();
-        H5VideoAddressConstant h5VideoAddressConstant = new H5VideoAddressConstant();
-        H5CookBookAddressConstant h5CookBookAddressConstant = new H5CookBookAddressConstant();
-        H5PicContextAddressConstant h5PicContextAddressConstant = new H5PicContextAddressConstant();
-        H5BeautyConstant h5BeautyConstant = new H5BeautyConstant();
-        H5CarConstant h5CarConstant = new H5CarConstant();
+//        H5ReadAddressConstant h5ReadAddressConstant = new H5ReadAddressConstant();
+//        H5AggregationAddressConstant h5AggregationAddressConstant = new H5AggregationAddressConstant();
+//        H5PicAddressConstant h5PicAddressConstant = new H5PicAddressConstant();
+//        H5VideoAddressConstant h5VideoAddressConstant = new H5VideoAddressConstant();
+//        H5CookBookAddressConstant h5CookBookAddressConstant = new H5CookBookAddressConstant();
+//        H5PicContextAddressConstant h5PicContextAddressConstant = new H5PicContextAddressConstant();
+//        H5BeautyConstant h5BeautyConstant = new H5BeautyConstant();
+//        H5CarConstant h5CarConstant = new H5CarConstant();
+//
+//        setReadLoc(h5ReadAddressConstant, mReadList);
+//        setAggLoc(h5AggregationAddressConstant, mAggregationList);
+//        setPicLoc(h5PicAddressConstant, mPicList);
+//        setVideoLoc(h5VideoAddressConstant, mVideoList);
+//        setCookBookLoc(h5CookBookAddressConstant, mCookBookList);
+//        setPicContextLoc(h5PicContextAddressConstant, mPicContextList);
+//        setBeautyLoc(h5BeautyConstant, mBeautyList);
+//        setCarLoc(h5CarConstant, mCarList);
 
-        setReadLoc(h5ReadAddressConstant, mReadList);
-        setAggLoc(h5AggregationAddressConstant, mAggregationList);
-        setPicLoc(h5PicAddressConstant, mPicList);
-        setVideoLoc(h5VideoAddressConstant, mVideoList);
-        setCookBookLoc(h5CookBookAddressConstant, mCookBookList);
-        setPicContextLoc(h5PicContextAddressConstant, mCookBookList);
-        setBeautyLoc(h5BeautyConstant, mBeautyList);
-        setCarLoc(h5CarConstant, mCarList);
+        H5Constant h5Constant = new H5Constant();
+        setLoc(h5Constant, mReadList, 1);
+        setLoc(h5Constant, mPicList, 2);
+        setLoc(h5Constant, mVideoList, 3);
+        setLoc(h5Constant, mAggregationList, 4);
+        setLoc(h5Constant, mCartoonList, 5);
+        setLoc(h5Constant, mCookBookList, 6);
+        setLoc(h5Constant, mPicContextList, 7);
+        setLoc(h5Constant, mBeautyList, 8);
+        setLoc(h5Constant, mCarList, 9);
+        setLoc(h5Constant, mGoldList, 10);
+        setLoc(h5Constant, mNewPicList, 11);
     }
 
     private void setReadLoc(H5ReadAddressConstant h5ReadAddressConstant, List<NetUrlBean.DataEntity> List) {
@@ -281,6 +319,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * 美妆链接
+     *
      * @param h5BeautyConstant
      * @param List
      */
@@ -294,6 +333,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * 汽车链接
+     *
      * @param h5CarConstant
      * @param List
      */
@@ -301,6 +341,68 @@ public class MainActivity extends AppCompatActivity {
         if (List != null && List.size() <= 0) {
             for (int i = 0; i < h5CarConstant.CarList.size(); i++) {
                 List.add(new NetUrlBean.DataEntity(i, h5CarConstant.CarList.get(i).ChannelAddress, h5CarConstant.CarList.get(i).ChannelName, 0, 0));
+            }
+        }
+    }
+
+    private void setLoc(H5Constant h5Constant, List<NetUrlBean.DataEntity> List, int index) {
+        if (List != null && List.size() <= 0) {
+            switch (index) {
+                case 1:
+                    for (int i = 0; i < h5Constant.ReadList.size(); i++) {
+                        List.add(new NetUrlBean.DataEntity(i, h5Constant.ReadList.get(i).ChannelAddress, h5Constant.ReadList.get(i).ChannelName, 0, 0));
+                    }
+                    break;
+                case 2:
+                    for (int i = 0; i < h5Constant.PicList.size(); i++) {
+                        List.add(new NetUrlBean.DataEntity(i, h5Constant.PicList.get(i).ChannelAddress, h5Constant.PicList.get(i).ChannelName, 0, 0));
+                    }
+                    break;
+                case 3:
+                    for (int i = 0; i < h5Constant.VideoList.size(); i++) {
+                        List.add(new NetUrlBean.DataEntity(i, h5Constant.VideoList.get(i).ChannelAddress, h5Constant.VideoList.get(i).ChannelName, 0, 0));
+                    }
+                    break;
+                case 4:
+                    for (int i = 0; i < h5Constant.AggregationList.size(); i++) {
+                        List.add(new NetUrlBean.DataEntity(i, h5Constant.AggregationList.get(i).ChannelAddress, h5Constant.AggregationList.get(i).ChannelName, 0, 0));
+                    }
+                    break;
+                case 5:
+                    for (int i = 0; i < h5Constant.CookBookList.size(); i++) {
+                        List.add(new NetUrlBean.DataEntity(i, h5Constant.CookBookList.get(i).ChannelAddress, h5Constant.CookBookList.get(i).ChannelName, 0, 0));
+                    }
+                    break;
+                case 6:
+                    for (int i = 0; i < h5Constant.CartoonList.size(); i++) {
+                        List.add(new NetUrlBean.DataEntity(i, h5Constant.CartoonList.get(i).ChannelAddress, h5Constant.CartoonList.get(i).ChannelName, 0, 0));
+                    }
+                    break;
+                case 7:
+                    for (int i = 0; i < h5Constant.PicContextList.size(); i++) {
+                        List.add(new NetUrlBean.DataEntity(i, h5Constant.PicContextList.get(i).ChannelAddress, h5Constant.PicContextList.get(i).ChannelName, 0, 0));
+                    }
+                    break;
+                case 8:
+                    for (int i = 0; i < h5Constant.BeautyList.size(); i++) {
+                        List.add(new NetUrlBean.DataEntity(i, h5Constant.BeautyList.get(i).ChannelAddress, h5Constant.BeautyList.get(i).ChannelName, 0, 0));
+                    }
+                    break;
+                case 9:
+                    for (int i = 0; i < h5Constant.CarList.size(); i++) {
+                        List.add(new NetUrlBean.DataEntity(i, h5Constant.CarList.get(i).ChannelAddress, h5Constant.CarList.get(i).ChannelName, 0, 0));
+                    }
+                    break;
+                case 10:
+                    for (int i = 0; i < h5Constant.GoldList.size(); i++) {
+                        List.add(new NetUrlBean.DataEntity(i, h5Constant.CarList.get(i).ChannelAddress, h5Constant.CarList.get(i).ChannelName, 0, 0));
+                    }
+                    break;
+                case 11:
+                    for (int i = 0; i < h5Constant.NewPicList.size(); i++) {
+                        List.add(new NetUrlBean.DataEntity(i, h5Constant.CarList.get(i).ChannelAddress, h5Constant.CarList.get(i).ChannelName, 0, 0));
+                    }
+                    break;
             }
         }
     }
@@ -351,26 +453,40 @@ public class MainActivity extends AppCompatActivity {
                         mCookBookCountUv += data.get(i).uv;
                         mCookBookCountPv += data.get(i).pv;
                     }
-                }else if (data.get(i).type == 7) {
+                } else if (data.get(i).type == 7) {
                     mPicContextList.add(new NetUrlBean.DataEntity(mPicContextList.size(), data.get(i).url, data.get(i).name, data.get(i).pv, data.get(i).uv));
                     if (data.get(i).uv >= 100) {
                         mPicContextCount++;
                         mPicContextCountUv += data.get(i).uv;
                         mPicContextCountPv += data.get(i).pv;
                     }
-                }else if (data.get(i).type == 8) {
+                } else if (data.get(i).type == 8) {
                     mBeautyList.add(new NetUrlBean.DataEntity(mBeautyList.size(), data.get(i).url, data.get(i).name, data.get(i).pv, data.get(i).uv));
                     if (data.get(i).uv >= 100) {
                         mBeautyCount++;
                         mBeautyCountUv += data.get(i).uv;
                         mBeautyCountPv += data.get(i).pv;
                     }
-                }else if (data.get(i).type == 9) {
+                } else if (data.get(i).type == 9) {
                     mCarList.add(new NetUrlBean.DataEntity(mCarList.size(), data.get(i).url, data.get(i).name, data.get(i).pv, data.get(i).uv));
                     if (data.get(i).uv >= 100) {
                         mCarCount++;
                         mCarCountUv += data.get(i).uv;
                         mCarCountPv += data.get(i).pv;
+                    }
+                } else if (data.get(i).type == 10) {
+                    mGoldList.add(new NetUrlBean.DataEntity(mGoldList.size(), data.get(i).url, data.get(i).name, data.get(i).pv, data.get(i).uv));
+                    if (data.get(i).uv >= 100) {
+                        mGoldCount++;
+                        mGoldCountUv += data.get(i).uv;
+                        mGoldCountPv += data.get(i).pv;
+                    }
+                } else if (data.get(i).type == 11) {
+                    mNewPicList.add(new NetUrlBean.DataEntity(mNewPicList.size(), data.get(i).url, data.get(i).name, data.get(i).pv, data.get(i).uv));
+                    if (data.get(i).uv >= 100) {
+                        mNewPicCount++;
+                        mNewPicCountUv += data.get(i).uv;
+                        mNewPicCountPv += data.get(i).pv;
                     }
                 }
             }
@@ -387,8 +503,8 @@ public class MainActivity extends AppCompatActivity {
             LogUtils.d(TAG + mBeautyList.size());
             LogUtils.d(TAG + mCarList.size());
             LogUtils.d(TAG + mH5Count);
-            mH5CountUv = mReadCountUv + mPicCountUv + mVideoCountUv + mAggCountUv + mCartoonCountUv + mCookBookCountUv + mPicContextCountUv+mBeautyCountUv+mCarCountUv;
-            mH5CountPv = mReadCountPv + mPicCountPv + mVideoCountPv + mAggCountPv + mCartoonCountPv + mCookBookCountPv + mPicContextCountPv+mBeautyCountPv+mCarCountPv;
+            mH5CountUv = mReadCountUv + mPicCountUv + mVideoCountUv + mAggCountUv + mCartoonCountUv + mCookBookCountUv + mPicContextCountUv + mBeautyCountUv + mCarCountUv + mGoldCountUv + mNewPicCountUv;
+            mH5CountPv = mReadCountPv + mPicCountPv + mVideoCountPv + mAggCountPv + mCartoonCountPv + mCookBookCountPv + mPicContextCountPv + mBeautyCountPv + mCarCountPv + mGoldCountPv + mNewPicCountPv;
             H5Text(mTvH5Count, "H5链接数为(大于100UV):", mH5Count, mH5CountUv, mH5CountPv);
             H5Text(mTvRead, "H5小说:", mReadCount, mReadCountUv, mReadCountPv);
             H5Text(mTvPic, "H5美图:", mPicCount, mPicCountUv, mPicCountPv);
@@ -399,6 +515,8 @@ public class MainActivity extends AppCompatActivity {
             H5Text(mTvPicContext, "H5图文:", mPicContextCount, mPicContextCountUv, mPicContextCountPv);
             H5Text(mTvBeauty, "H5美妆:", mBeautyCount, mBeautyCountUv, mBeautyCountPv);
             H5Text(mTvCar, "H5汽车:", mCarCount, mCarCountUv, mCarCountPv);
+            H5Text(mTvGold, "H5砸金蛋:", mGoldCount, mGoldCountUv, mGoldCountPv);
+            H5Text(mTvNewPic, "H5新美图:", mNewPicCount, mNewPicCountUv, mNewPicCountPv);
         }
     }
 
