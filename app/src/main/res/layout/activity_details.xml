@@ -1,46 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout android:id="@+id/rl_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp">
+    <RelativeLayout
+        android:id="@+id/rl_title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
 
-        <TextView android:id="@+id/tv_back"
-                  android:layout_width="wrap_content"
-                  android:layout_height="match_parent"
-                  android:gravity="center"
-                  android:padding="10dp"
-                  android:text="返回"/>
+        <TextView
+            android:id="@+id/tv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="返回" />
 
-        <TextView android:id="@+id/tv_title"
-                  android:layout_width="wrap_content"
-                  android:layout_height="match_parent"
-                  android:layout_centerInParent="true"
-                  android:layout_marginLeft="60dp"
-                  android:layout_marginRight="100dp"
-                  android:ellipsize="end"
-                  android:gravity="center"
-                  android:singleLine="true"
-                  android:text="read"/>
+        <TextView
+            android:id="@+id/tv_copy"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/tv_back"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="复制" />
 
-        <TextView android:id="@+id/tv_clean_cache"
-                  android:layout_width="wrap_content"
-                  android:layout_height="match_parent"
-                  android:layout_toLeftOf="@+id/tv_refresh"
-                  android:gravity="center"
-                  android:padding="10dp"
-                  android:text="清除"/>
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="100dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="read" />
 
-        <TextView android:id="@+id/tv_refresh"
-                  android:layout_width="wrap_content"
-                  android:layout_height="match_parent"
-                  android:layout_alignParentRight="true"
-                  android:gravity="center"
-                  android:padding="10dp"
-                  android:text="刷新"/>
+        <TextView
+            android:id="@+id/tv_clean_cache"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@+id/tv_refresh"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="清除" />
+
+        <TextView
+            android:id="@+id/tv_refresh"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="刷新" />
 
     </RelativeLayout>
 
@@ -51,10 +65,10 @@
         android:layout_below="@+id/rl_title">-->
 
     <!--<com.tencent.smtt.sdk.WebView-->
-        <!--android:id="@+id/webview"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_below="@+id/rl_title"-->
+    <!--android:id="@+id/webview"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_below="@+id/rl_title"-->
     <!--&gt;-->
     <!--</com.tencent.smtt.sdk.WebView>-->
 
@@ -62,9 +76,7 @@
         android:id="@+id/webview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/rl_title"
-    >
-    </WebView>
+        android:layout_below="@+id/rl_title"></WebView>
 
     <!--</android.support.v4.widget.SwipeRefreshLayout>-->
 

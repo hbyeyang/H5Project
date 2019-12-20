@@ -102,6 +102,14 @@ public class ClassActivity extends AppCompatActivity {
                 mTvTitle.setText("H5新美图");
                 mRecyclerView.setAdapter(new RecyclerviewAdapter(this, MainActivity.mNewPicList));
                 break;
+            case 12:
+                mTvTitle.setText("养猫游戏");
+                mRecyclerView.setAdapter(new RecyclerviewAdapter(this, MainActivity.mCatList));
+                break;
+            case 13:
+                mTvTitle.setText("生活");
+                mRecyclerView.setAdapter(new RecyclerviewAdapter(this, MainActivity.mLifeList));
+                break;
         }
     }
 }

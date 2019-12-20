@@ -1,5 +1,7 @@
 package com.lt.h5project.activity;
 
+import android.app.ActivityManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -8,15 +10,16 @@ import android.widget.Toast;
 
 import com.lt.h5project.R;
 import com.lt.h5project.bean.NetUrlBean;
-import com.lt.h5project.constant.H5AggregationAddressConstant;
-import com.lt.h5project.constant.H5BeautyConstant;
-import com.lt.h5project.constant.H5CarConstant;
+import com.lt.h5project.builder.Cat;
+import com.lt.h5project.builder.dogbuilder.Dog;
+import com.lt.h5project.builder.phonebuilder.Builder;
+import com.lt.h5project.builder.phonebuilder.Director;
+import com.lt.h5project.builder.phonebuilder.Phone;
+import com.lt.h5project.builder.phonebuilder.PhoneBuilder;
 import com.lt.h5project.constant.H5Constant;
-import com.lt.h5project.constant.H5CookBookAddressConstant;
-import com.lt.h5project.constant.H5PicAddressConstant;
-import com.lt.h5project.constant.H5PicContextAddressConstant;
-import com.lt.h5project.constant.H5ReadAddressConstant;
-import com.lt.h5project.constant.H5VideoAddressConstant;
+import com.lt.h5project.factory.Animal;
+import com.lt.h5project.factory.CatFactory;
+import com.lt.h5project.factory.DogFactory;
 import com.lt.h5project.net.GsonObjectCallback;
 import com.lt.h5project.net.NetAddress;
 import com.lt.h5project.net.OkHttp3Utils;
@@ -50,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
     private int mCarCount;//汽车链接
     private int mGoldCount;//砸金蛋链接
     private int mNewPicCount;//新美图链接
+    private int mCatCount;//养猫链接
+    private int mLifeCount;//生活链接
 
     private int mH5CountUv;//总链接数
     private int mReadCountUv;//小说链接
@@ -63,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
     private int mCarCountUv;//汽车链接
     private int mGoldCountUv;//砸金蛋链接
     private int mNewPicCountUv;//新美图链接
+    private int mCatCountUv;//养猫链接
+    private int mLifeCountUv;//生活链接
 
     private int mH5CountPv;//总链接数
     private int mReadCountPv;//小说链接
@@ -74,8 +81,10 @@ public class MainActivity extends AppCompatActivity {
     private int mPicContextCountPv;//图文链接
     private int mBeautyCountPv;//美妆链接
     private int mCarCountPv;//汽车链接
-    private int mGoldCountPv;//汽车链接
-    private int mNewPicCountPv;//汽车链接
+    private int mGoldCountPv;//砸金蛋链接
+    private int mNewPicCountPv;//新美图链接
+    private int mCatCountPv;//养猫链接
+    private int mLifeCountPv;//生活链接
 
 
     public static List<NetUrlBean.DataEntity> mReadList = new ArrayList<>();
@@ -89,6 +98,8 @@ public class MainActivity extends AppCompatActivity {
     public static List<NetUrlBean.DataEntity> mCarList = new ArrayList<>();
     public static List<NetUrlBean.DataEntity> mGoldList = new ArrayList<>();
     public static List<NetUrlBean.DataEntity> mNewPicList = new ArrayList<>();
+    public static List<NetUrlBean.DataEntity> mCatList = new ArrayList<>();
+    public static List<NetUrlBean.DataEntity> mLifeList = new ArrayList<>();
     private TextView mTvH5Count;
     private TextView mTvRead;
     private TextView mTvPic;
@@ -101,12 +112,15 @@ public class MainActivity extends AppCompatActivity {
     private TextView mTvCar;
     private TextView mTvGold;
     private TextView mTvNewPic;
+    private TextView mTvCat;
+    private TextView mTvLife;
     private TextView mTvStandbyApplication;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        dumpTasks(this);
         mTvH5Count = findViewById(R.id.tv_h5_count);
 
         if (mReadList.size() == 0 && mPicList.size() == 0) {
@@ -124,6 +138,8 @@ public class MainActivity extends AppCompatActivity {
         mTvCar = findViewById(R.id.tv_car);
         mTvGold = findViewById(R.id.tv_gold);
         mTvNewPic = findViewById(R.id.tv_new_pic);
+        mTvCat = findViewById(R.id.tv_cat);
+        mTvLife = findViewById(R.id.tv_life);
         mTvStandbyApplication = findViewById(R.id.tv_standby_application);
 
         mTvRead.setOnClickListener(new View.OnClickListener() {
@@ -196,20 +212,36 @@ public class MainActivity extends AppCompatActivity {
                 ClassActivity.launch(MainActivity.this, 11);
             }
         });
+        mTvCat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ClassActivity.launch(MainActivity.this, 12);
+            }
+        });
+        mTvLife.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ClassActivity.launch(MainActivity.this, 13);
+            }
+        });
 
         mTvStandbyApplication.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(MainActivity.this, "点击", Toast.LENGTH_SHORT).show();
 //                DetailsActivity.launch(MainActivity.this, new NetUrlBean.DataEntity(0, "http://t.alpha.channel.45xie.com/ad.html", "备用代码位", 0, 0));
-                DetailsActivity.launch(MainActivity.this, new NetUrlBean.DataEntity(0, "http://t.alpha.channel.45xie.com/cookbook/home.html?appid=B428109E4AA4E883DB8B1877BFF3575F", "测试菜谱", 0, 0));
+//                DetailsActivity.launch(MainActivity.this, new NetUrlBean.DataEntity(0, "http://t.alpha.channel.45xie.com/manhua/home.html?appid=B428109E4AA4E883DB8B1877BFF3575F", "测试菜谱", 0, 0));
+                DetailsActivity.launch(MainActivity.this, new NetUrlBean.DataEntity(0, "http://t.alpha.channel.45xie.com/gamecat/index.html?appid=B428109E4AA4E883DB8B1877BFF3575F&id=debug", "游戏", 0, 0));
 //                DetailsActivity.launch(MainActivity.this, new NetUrlBean.DataEntity(0, "https://m.xi5jie.com/install/land?channelCode=letu", "备用代码位", 0, 0));
 //                DetailsActivity.launch(MainActivity.this, new NetUrlBean.DataEntity(0, "http://a.app.qq.com/o/simple.jsp?pkgname=com.xszn.ime&ckey=CK1429286954552", "备用代码位", 0, 0));
             }
         });
+
+        initTest();
     }
 
     private void getNetUrl() {
+        LogUtils.e("时间戳：" + System.currentTimeMillis());
         OkHttp3Utils.doPost(NetAddress.BASE_URL, mParmas, new GsonObjectCallback<NetUrlBean>() {
             @Override
             public void onUi(NetUrlBean netUrlBean) {
@@ -269,81 +301,81 @@ public class MainActivity extends AppCompatActivity {
         setLoc(h5Constant, mNewPicList, 11);
     }
 
-    private void setReadLoc(H5ReadAddressConstant h5ReadAddressConstant, List<NetUrlBean.DataEntity> List) {
-        if (List != null && List.size() <= 0) {
-            for (int i = 0; i < h5ReadAddressConstant.ReadList.size(); i++) {
-                List.add(new NetUrlBean.DataEntity(i, h5ReadAddressConstant.ReadList.get(i).ChannelAddress, h5ReadAddressConstant.ReadList.get(i).ChannelName, 0, 0));
-            }
-        }
-    }
-
-    private void setAggLoc(H5AggregationAddressConstant h5AggregationAddressConstant, List<NetUrlBean.DataEntity> List) {
-        if (List != null && List.size() <= 0) {
-            for (int i = 0; i < h5AggregationAddressConstant.AggregationList.size(); i++) {
-                List.add(new NetUrlBean.DataEntity(i, h5AggregationAddressConstant.AggregationList.get(i).ChannelAddress, h5AggregationAddressConstant.AggregationList.get(i).ChannelName, 0, 0));
-            }
-        }
-    }
-
-    private void setVideoLoc(H5VideoAddressConstant h5VideoAddressConstant, List<NetUrlBean.DataEntity> List) {
-        if (List != null && List.size() <= 0) {
-            for (int i = 0; i < h5VideoAddressConstant.VideoList.size(); i++) {
-                List.add(new NetUrlBean.DataEntity(i, h5VideoAddressConstant.VideoList.get(i).ChannelAddress, h5VideoAddressConstant.VideoList.get(i).ChannelName, 0, 0));
-            }
-        }
-    }
-
-    private void setPicLoc(H5PicAddressConstant h5PicAddressConstant, List<NetUrlBean.DataEntity> List) {
-        if (List != null && List.size() <= 0) {
-            for (int i = 0; i < h5PicAddressConstant.PicList.size(); i++) {
-                List.add(new NetUrlBean.DataEntity(i, h5PicAddressConstant.PicList.get(i).ChannelAddress, h5PicAddressConstant.PicList.get(i).ChannelName, 0, 0));
-            }
-        }
-    }
-
-    private void setCookBookLoc(H5CookBookAddressConstant h5CookBookAddressConstant, List<NetUrlBean.DataEntity> List) {
-        if (List != null && List.size() <= 0) {
-            for (int i = 0; i < h5CookBookAddressConstant.CookBookList.size(); i++) {
-                List.add(new NetUrlBean.DataEntity(i, h5CookBookAddressConstant.CookBookList.get(i).ChannelAddress, h5CookBookAddressConstant.CookBookList.get(i).ChannelName, 0, 0));
-            }
-        }
-    }
-
-    private void setPicContextLoc(H5PicContextAddressConstant h5PicContextAddressConstant, List<NetUrlBean.DataEntity> List) {
-        if (List != null && List.size() <= 0) {
-            for (int i = 0; i < h5PicContextAddressConstant.PicContextList.size(); i++) {
-                List.add(new NetUrlBean.DataEntity(i, h5PicContextAddressConstant.PicContextList.get(i).ChannelAddress, h5PicContextAddressConstant.PicContextList.get(i).ChannelName, 0, 0));
-            }
-        }
-    }
-
-    /**
-     * 美妆链接
-     *
-     * @param h5BeautyConstant
-     * @param List
-     */
-    private void setBeautyLoc(H5BeautyConstant h5BeautyConstant, List<NetUrlBean.DataEntity> List) {
-        if (List != null && List.size() <= 0) {
-            for (int i = 0; i < h5BeautyConstant.BeautyList.size(); i++) {
-                List.add(new NetUrlBean.DataEntity(i, h5BeautyConstant.BeautyList.get(i).ChannelAddress, h5BeautyConstant.BeautyList.get(i).ChannelName, 0, 0));
-            }
-        }
-    }
-
-    /**
-     * 汽车链接
-     *
-     * @param h5CarConstant
-     * @param List
-     */
-    private void setCarLoc(H5CarConstant h5CarConstant, List<NetUrlBean.DataEntity> List) {
-        if (List != null && List.size() <= 0) {
-            for (int i = 0; i < h5CarConstant.CarList.size(); i++) {
-                List.add(new NetUrlBean.DataEntity(i, h5CarConstant.CarList.get(i).ChannelAddress, h5CarConstant.CarList.get(i).ChannelName, 0, 0));
-            }
-        }
-    }
+//    private void setReadLoc(H5ReadAddressConstant h5ReadAddressConstant, List<NetUrlBean.DataEntity> List) {
+//        if (List != null && List.size() <= 0) {
+//            for (int i = 0; i < h5ReadAddressConstant.ReadList.size(); i++) {
+//                List.add(new NetUrlBean.DataEntity(i, h5ReadAddressConstant.ReadList.get(i).ChannelAddress, h5ReadAddressConstant.ReadList.get(i).ChannelName, 0, 0));
+//            }
+//        }
+//    }
+//
+//    private void setAggLoc(H5AggregationAddressConstant h5AggregationAddressConstant, List<NetUrlBean.DataEntity> List) {
+//        if (List != null && List.size() <= 0) {
+//            for (int i = 0; i < h5AggregationAddressConstant.AggregationList.size(); i++) {
+//                List.add(new NetUrlBean.DataEntity(i, h5AggregationAddressConstant.AggregationList.get(i).ChannelAddress, h5AggregationAddressConstant.AggregationList.get(i).ChannelName, 0, 0));
+//            }
+//        }
+//    }
+//
+//    private void setVideoLoc(H5VideoAddressConstant h5VideoAddressConstant, List<NetUrlBean.DataEntity> List) {
+//        if (List != null && List.size() <= 0) {
+//            for (int i = 0; i < h5VideoAddressConstant.VideoList.size(); i++) {
+//                List.add(new NetUrlBean.DataEntity(i, h5VideoAddressConstant.VideoList.get(i).ChannelAddress, h5VideoAddressConstant.VideoList.get(i).ChannelName, 0, 0));
+//            }
+//        }
+//    }
+//
+//    private void setPicLoc(H5PicAddressConstant h5PicAddressConstant, List<NetUrlBean.DataEntity> List) {
+//        if (List != null && List.size() <= 0) {
+//            for (int i = 0; i < h5PicAddressConstant.PicList.size(); i++) {
+//                List.add(new NetUrlBean.DataEntity(i, h5PicAddressConstant.PicList.get(i).ChannelAddress, h5PicAddressConstant.PicList.get(i).ChannelName, 0, 0));
+//            }
+//        }
+//    }
+//
+//    private void setCookBookLoc(H5CookBookAddressConstant h5CookBookAddressConstant, List<NetUrlBean.DataEntity> List) {
+//        if (List != null && List.size() <= 0) {
+//            for (int i = 0; i < h5CookBookAddressConstant.CookBookList.size(); i++) {
+//                List.add(new NetUrlBean.DataEntity(i, h5CookBookAddressConstant.CookBookList.get(i).ChannelAddress, h5CookBookAddressConstant.CookBookList.get(i).ChannelName, 0, 0));
+//            }
+//        }
+//    }
+//
+//    private void setPicContextLoc(H5PicContextAddressConstant h5PicContextAddressConstant, List<NetUrlBean.DataEntity> List) {
+//        if (List != null && List.size() <= 0) {
+//            for (int i = 0; i < h5PicContextAddressConstant.PicContextList.size(); i++) {
+//                List.add(new NetUrlBean.DataEntity(i, h5PicContextAddressConstant.PicContextList.get(i).ChannelAddress, h5PicContextAddressConstant.PicContextList.get(i).ChannelName, 0, 0));
+//            }
+//        }
+//    }
+//
+//    /**
+//     * 美妆链接
+//     *
+//     * @param h5BeautyConstant
+//     * @param List
+//     */
+//    private void setBeautyLoc(H5BeautyConstant h5BeautyConstant, List<NetUrlBean.DataEntity> List) {
+//        if (List != null && List.size() <= 0) {
+//            for (int i = 0; i < h5BeautyConstant.BeautyList.size(); i++) {
+//                List.add(new NetUrlBean.DataEntity(i, h5BeautyConstant.BeautyList.get(i).ChannelAddress, h5BeautyConstant.BeautyList.get(i).ChannelName, 0, 0));
+//            }
+//        }
+//    }
+//
+//    /**
+//     * 汽车链接
+//     *
+//     * @param h5CarConstant
+//     * @param List
+//     */
+//    private void setCarLoc(H5CarConstant h5CarConstant, List<NetUrlBean.DataEntity> List) {
+//        if (List != null && List.size() <= 0) {
+//            for (int i = 0; i < h5CarConstant.CarList.size(); i++) {
+//                List.add(new NetUrlBean.DataEntity(i, h5CarConstant.CarList.get(i).ChannelAddress, h5CarConstant.CarList.get(i).ChannelName, 0, 0));
+//            }
+//        }
+//    }
 
     private void setLoc(H5Constant h5Constant, List<NetUrlBean.DataEntity> List, int index) {
         if (List != null && List.size() <= 0) {
@@ -488,6 +520,20 @@ public class MainActivity extends AppCompatActivity {
                         mNewPicCountUv += data.get(i).uv;
                         mNewPicCountPv += data.get(i).pv;
                     }
+                } else if (data.get(i).type == 12) {
+                    mCatList.add(new NetUrlBean.DataEntity(mCatList.size(), data.get(i).url, data.get(i).name, data.get(i).pv, data.get(i).uv));
+                    if (data.get(i).uv >= 100) {
+                        mCatCount++;
+                        mCatCountUv += data.get(i).uv;
+                        mCatCountPv += data.get(i).pv;
+                    }
+                } else if (data.get(i).type == 13) {
+                    mLifeList.add(new NetUrlBean.DataEntity(mLifeList.size(), data.get(i).url, data.get(i).name, data.get(i).pv, data.get(i).uv));
+                    if (data.get(i).uv >= 100) {
+                        mLifeCount++;
+                        mLifeCountUv += data.get(i).uv;
+                        mLifeCountPv += data.get(i).pv;
+                    }
                 }
             }
             for (int i = 0; i < data.size(); i++) {
@@ -502,9 +548,11 @@ public class MainActivity extends AppCompatActivity {
             LogUtils.d(TAG + mCookBookList.size());
             LogUtils.d(TAG + mBeautyList.size());
             LogUtils.d(TAG + mCarList.size());
+            LogUtils.d(TAG + mCatList.size());
+            LogUtils.d(TAG + mLifeList.size());
             LogUtils.d(TAG + mH5Count);
-            mH5CountUv = mReadCountUv + mPicCountUv + mVideoCountUv + mAggCountUv + mCartoonCountUv + mCookBookCountUv + mPicContextCountUv + mBeautyCountUv + mCarCountUv + mGoldCountUv + mNewPicCountUv;
-            mH5CountPv = mReadCountPv + mPicCountPv + mVideoCountPv + mAggCountPv + mCartoonCountPv + mCookBookCountPv + mPicContextCountPv + mBeautyCountPv + mCarCountPv + mGoldCountPv + mNewPicCountPv;
+            mH5CountUv = mReadCountUv + mPicCountUv + mVideoCountUv + mAggCountUv + mCartoonCountUv + mCookBookCountUv + mPicContextCountUv + mBeautyCountUv + mCarCountUv + mGoldCountUv + mNewPicCountUv + mCatCountUv + mLifeCountUv;
+            mH5CountPv = mReadCountPv + mPicCountPv + mVideoCountPv + mAggCountPv + mCartoonCountPv + mCookBookCountPv + mPicContextCountPv + mBeautyCountPv + mCarCountPv + mGoldCountPv + mNewPicCountPv + mCatCountPv + mLifeCountPv;
             H5Text(mTvH5Count, "H5链接数为(大于100UV):", mH5Count, mH5CountUv, mH5CountPv);
             H5Text(mTvRead, "H5小说:", mReadCount, mReadCountUv, mReadCountPv);
             H5Text(mTvPic, "H5美图:", mPicCount, mPicCountUv, mPicCountPv);
@@ -517,12 +565,13 @@ public class MainActivity extends AppCompatActivity {
             H5Text(mTvCar, "H5汽车:", mCarCount, mCarCountUv, mCarCountPv);
             H5Text(mTvGold, "H5砸金蛋:", mGoldCount, mGoldCountUv, mGoldCountPv);
             H5Text(mTvNewPic, "H5新美图:", mNewPicCount, mNewPicCountUv, mNewPicCountPv);
+            H5Text(mTvCat, "养猫游戏:", mCatCount, mCatCountUv, mCatCountPv);
+            H5Text(mTvLife, "H5生活:", mLifeCount, mLifeCountUv, mLifeCountPv);
         }
     }
 
     private void H5Text(TextView textView, String name, int h5Count, int h5CountUv, int h5CountPv) {
         if (h5CountUv != 0) {
-//            textView.setText(name + h5Count + "--uv:" + readableFileSize(h5CountUv) + "--pv:" + readableFileSize(h5CountPv) + "--u/p:" + h5CountPv / h5CountUv);
             textView.setText(name + h5Count + "--uv:" + readableFileSize(h5CountUv) + "--pv:" + readableFileSize(h5CountPv) + "--u/p:" + xiaoshu(h5CountPv, h5CountUv));
         } else {
             textView.setText(name + h5Count + "--uv:" + readableFileSize(h5CountUv) + "--pv:" + readableFileSize(h5CountPv));
@@ -541,5 +590,37 @@ public class MainActivity extends AppCompatActivity {
 
     private String xiaoshu(int h5CountPv, double h5CountUv) {
         return new DecimalFormat("0.0").format(h5CountPv / h5CountUv * 1.0) + "";
+    }
+
+    private void dumpTasks(Context context) {
+        ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningTaskInfo> tasks = activityManager.getRunningTasks(20);
+        for (ActivityManager.RunningTaskInfo task : tasks) {
+            LogUtils.d(TAG + task.baseActivity.getPackageName());
+        }
+    }
+
+
+    private void initTest() {
+        Builder builder = new PhoneBuilder();
+        Director director = new Director(builder);
+        director.construct("18612345678", "one plus", "29");
+        Phone phone = builder.create();
+
+        Dog dog = new Dog.DogBuilder().age(4).color("red").name("flutter").build();
+
+        Cat cat = new Cat.CatBuilder().name("luck").color("orgreen").build();
+
+        LogUtils.d(TAG + "builder: " + dog.toString());
+
+
+        CatFactory catFactory = new CatFactory();
+//        Animal animal = catFactory.create();
+        com.lt.h5project.factory.Cat cat1 = (com.lt.h5project.factory.Cat) catFactory.create();
+        cat1.show();
+
+        DogFactory dogFactory = new DogFactory();
+        Animal animal = dogFactory.create();
+        animal.show();
     }
 }

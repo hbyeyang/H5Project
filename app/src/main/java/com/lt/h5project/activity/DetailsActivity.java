@@ -1,12 +1,15 @@
 package com.lt.h5project.activity;
 
 import android.annotation.SuppressLint;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
@@ -48,6 +51,8 @@ public class DetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //禁止截屏
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
         setContentView(R.layout.activity_details);
         final TextView tvTitle = findViewById(R.id.tv_title);
         mWebView = findViewById(R.id.webview);
@@ -70,6 +75,14 @@ public class DetailsActivity extends AppCompatActivity {
 //                refreshLayout.setRefreshing(false);
 //            }
 //        });
+
+        findViewById(R.id.tv_copy).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MyApplication.getContext(),"复制成功",Toast.LENGTH_SHORT).show();
+                copy(DetailsActivity.this,dataEntity.url);
+            }
+        });
         findViewById(R.id.tv_refresh).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,6 +99,26 @@ public class DetailsActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    /**
+     * 复制内容到剪切板
+     *
+     * @param copyStr
+     * @return
+     */
+    private boolean copy(Context context, String copyStr) {
+        try {
+            //获取剪贴板管理器
+            ClipboardManager cm = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+            // 创建普通字符型ClipData
+            ClipData mClipData = ClipData.newPlainText("Label", copyStr);
+            // 将ClipData内容放到系统剪贴板里。
+            cm.setPrimaryClip(mClipData);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     private void loadUrl(TextView tvTitle, NetUrlBean.DataEntity dataEntity) {
@@ -145,7 +178,7 @@ public class DetailsActivity extends AppCompatActivity {
         webSettings.setUseWideViewPort(true); //将图片调整到适合webview的大小
         webSettings.setLoadWithOverviewMode(true); // 缩放至屏幕的大小
         webSettings.setTextZoom(100);
-        ; // 缩放至屏幕的大小
+        // 缩放至屏幕的大小
 
         webSettings.setBuiltInZoomControls(false);
         webSettings.setSupportZoom(false);

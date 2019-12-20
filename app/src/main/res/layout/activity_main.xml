@@ -158,10 +158,34 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/tv_standby_application"
+                android:id="@+id/tv_cat"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_below="@+id/tv_new_pic"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"
+                android:gravity="center"
+                android:text="养猫"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_life"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_below="@+id/tv_cat"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"
+                android:gravity="center"
+                android:text="生活"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_standby_application"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_below="@+id/tv_life"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="50dp"
                 android:layout_marginTop="50dp"
